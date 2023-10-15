@@ -7,12 +7,13 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
+import { Button } from "../ui/button";
 
 const Header = () => {
   const [scrolling, setScrolling] = useState(false);
 
   const handleScroll = () => {
-    if (window.scrollY > 100) {
+    if (window.scrollY > 50) {
       setScrolling(true);
     } else {
       setScrolling(false);
@@ -28,7 +29,7 @@ const Header = () => {
 
   return (
     <div
-      className={`w-full py-1 px-36 fixed top-0 transition-background duration-300 ease-in-out ${
+      className={`w-full py-6 px-36 fixed top-0 transition-background duration-300 ease-in-out ${
         scrolling ? "bg-background" : "bg-transparent"
       } flex justify-between items-center `}
     >
@@ -67,6 +68,7 @@ const Header = () => {
             </div>
           </HoverCardContent>
         </HoverCard>
+        <Button>Sign up</Button>
       </div>
     </div>
   );

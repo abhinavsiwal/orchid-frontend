@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&family=League+Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&family=League+Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 @layer base {
   :root {
@@ -27,7 +27,7 @@
     --ring: 24.6 95% 53.1%;
     --radius: 0.5rem;
   }
- 
+
   .dark {
     --background: 20 14.3% 4.1%;
     --foreground: 60 9.1% 97.8%;
@@ -51,9 +51,63 @@
   }
 }
 
-.spartan{
-  font-family: 'League Spartan', sans-serif;
+.spartan {
+  font-family: "League Spartan", sans-serif;
 }
 .inter {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
+}
+
+.image-wrap {
+  width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  position: absolute;
+}
+
+.image-wrap img {
+  width: 100%;
+  animation: move 20s ease infinite;
+  filter: blur(4px);
+  -ms-animation: move 20s ease infinite;
+  -webkit-animation: move 20s ease infinite;
+  /* -0-animation: move 40s ease; */
+  -moz-animation: move 20s ease infinite;
+  position: absolute;
+}
+
+@keyframes move {
+  0% {
+    -webkit-transform-origin: bottom left;
+    -moz-transform-origin: bottom left;
+    -ms-transform-origin: bottom left;
+    -o-transform-origin: bottom left;
+    transform-origin: bottom left;
+    transform: scale(1);
+    -ms-transform: scale(1);
+    /* IE 9 */
+
+    -webkit-transform: scale(1);
+    /* Safari and Chrome */
+
+    -o-transform: scale(1);
+    /* Opera */
+
+    -moz-transform: scale(1);
+    /* Firefox */
+  }
+  100% {
+    transform: scale(1.4);
+    -ms-transform: scale(1.4);
+    /* IE 9 */
+
+    -webkit-transform: scale(1.4);
+    /* Safari and Chrome */
+
+    -o-transform: scale(1.4);
+    /* Opera */
+
+    -moz-transform: scale(1.4);
+    /* Firefox */
+  }
 }
