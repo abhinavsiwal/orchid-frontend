@@ -1,23 +1,38 @@
-// "use client";
+"use client";
 import Landing from "@/components/Home/Landing";
+import axios from "axios";
 
 import React, { useEffect, useState } from "react";
+import parseGooglePlace from "parse-google-place";
+import { useAppDispatch } from "@/store/redux-hooks";
+import { setLocation } from "@/store/slices/location";
 
 export default function Home() {
-  console.log("jjere");
-  
-  const [location, setLocation] = useState({
-    latitude: 0,
-    longitude: 0,
-  });
-
+  const dispatch  = useAppDispatch();
+ 
   useEffect(() => {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
         const { latitude, longitude } = position.coords;
         console.log(latitude, longitude);
 
-        setLocation({ latitude, longitude });
+      
+        const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=AIzaSyC1Cz13aBYAbBYJL0oABZ8KZnd7imiWwA4`;
+        axios.get(url).then((res) => {
+          const address:any = parseGooglePlace(res.data.results[0]);
+          console.log("address", address);
+          dispatch(setLocation({
+            address:address.address,
+            city:address.city,
+            state:address.stateLong,
+            country:address.countryLong,
+            pinCode:address.zipCode,
+            cordinates:{
+              latitude:latitude,
+              longitude:longitude
+            }
+          }))
+        });
       });
     }
   }, []);
