@@ -44,10 +44,9 @@ const Landing = () => {
         />
       </div>
       <div className="w-full flex items-center justify-center flex-col gap-8 px-36">
-        <h6 className="text-secondary inter text-7xl font-bold ">
-          Hire{" "}
-          <span className="text-primary font-extrabold underline">Experts</span>{" "}
-          & Get Your Job Done
+        <h6 className="text-secondary inter text-7xl font-bold text-center ">
+          Hire <span className="text-primary font-extrabold">Experts</span> &
+          Get Your Job Done
         </h6>
         <div className="w-full p-4 rounded-lg shadow bg-background  gap-8 items-center grid grid-cols-12">
           <div className="w-full flex items-center gap-2 col-span-5 border-r border-r-primary">

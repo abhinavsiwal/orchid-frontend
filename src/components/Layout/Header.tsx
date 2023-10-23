@@ -3,10 +3,16 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
 import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "@/components/ui/hover-card";
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuIndicator,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  NavigationMenuViewport,
+} from "@/components/ui/navigation-menu";
+
 import { Button } from "../ui/button";
 
 const Header = () => {
@@ -40,34 +46,99 @@ const Header = () => {
         alt="Orchid Company Logo"
         className="w-28 h-full"
       />
-      <div className="flex gap-4 items-center">
+      <div className="flex gap-6 items-center">
         <p
-          className={`text-foreground spartan font-medium opacity-60 text-lg cursor-pointer`}
+          className={` ${
+            scrolling ? "text-foreground opacity-60" : "text-white"
+          }  spartan font-medium  text-lg cursor-pointer`}
         >
           Home
         </p>
-        <HoverCard>
-          <HoverCardTrigger asChild>
-            <div className="flex gap-1 items-center">
+        <NavigationMenu>
+          <NavigationMenuList>
+            <NavigationMenuItem>
+              <NavigationMenuTrigger
+                className={` ${
+                  scrolling ? "text-foreground opacity-60" : "text-white"
+                }  spartan font-medium  text-lg cursor-pointer bg-transparent`}
+              >
+                Services
+              </NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <NavigationMenuLink>
+                  <div className="flex gap-1 w-full ">
+                    <div className="flex flex-col gap-1 p-2 w-full ">
+                      <p className="text-foreground opacity-70 hover:opacity-100 cursor-pointer inter whitespace-nowrap ">
+                        Relocation Services
+                      </p>
 
-            <p
-              className={`text-foreground spartan font-medium opacity-60 text-lg cursor-pointer`}
-              >
-              Categories
-            </p>
-            <ChevronDownIcon className="w-4 h-4 text-foreground" />
-                </div>
-          </HoverCardTrigger>
-          <HoverCardContent className="w-80">
-            <div className="flex flex-col space-y-2 ">
-              <p
-                className={`text-foreground spartan font-semibold opacity-60 text-lg cursor-pointer`}
-              >
-                Categories
-              </p>
-            </div>
-          </HoverCardContent>
-        </HoverCard>
+                      <p className="text-foreground opacity-70 hover:opacity-100 cursor-pointer inter whitespace-nowrap ">
+                        Interior Design
+                      </p>
+
+                      <p className="text-foreground opacity-70 hover:opacity-100 cursor-pointer inter whitespace-nowrap ">
+                        Cleaning Services
+                      </p>
+
+                      <p className="text-foreground opacity-70 hover:opacity-100 cursor-pointer inter whitespace-nowrap ">
+                        Plumber Services
+                      </p>
+
+                      <p className="text-foreground opacity-70 hover:opacity-100 cursor-pointer inter whitespace-nowrap">
+                        Car Rental & Taxi
+                      </p>
+
+                      <p className="text-foreground opacity-70 hover:opacity-100 cursor-pointer inter whitespace-nowrap">
+                        Photography
+                      </p>
+                    </div>
+                    <div className="flex flex-col gap-1 p-2 w-full ">
+                      <p className="text-foreground opacity-70  inter whitespace-nowrap hover:opacity-100 cursor-pointer  ">
+                        Painting Service
+                      </p>
+                      <p className="text-foreground opacity-70 inter whitespace-nowrap hover:opacity-100 cursor-pointer">
+                        Sanitization Service
+                      </p>
+                      <p className="text-foreground opacity-70 whitespace-nowrap inter hover:opacity-100 cursor-pointer">
+                        Pest Control
+                      </p>
+                      <p className="text-foreground opacity-70 inter whitespace-nowrap hover:opacity-100 cursor-pointer">
+                        Repair & Maintenance
+                      </p>
+                      <p className="text-foreground opacity-70 inter whitespace-nowrap hover:opacity-100 cursor-pointer">
+                        Event Management
+                      </p>
+                      <p className="text-foreground opacity-70 inter whitespace-nowrap hover:opacity-100 cursor-pointer">
+                        Wedding Bridal Makeup
+                      </p>
+                    </div>
+                  </div>
+                </NavigationMenuLink>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+          </NavigationMenuList>
+        </NavigationMenu>
+        <p
+          className={` ${
+            scrolling ? "text-foreground opacity-60" : "text-white"
+          }  spartan font-medium  text-lg cursor-pointer`}
+        >
+          About
+        </p>
+        <p
+          className={` ${
+            scrolling ? "text-foreground opacity-60" : "text-white"
+          }  spartan font-medium  text-lg cursor-pointer`}
+        >
+          Blog
+        </p>
+        <p
+          className={` ${
+            scrolling ? "text-foreground opacity-60" : "text-white"
+          }  spartan font-medium  text-lg cursor-pointer`}
+        >
+          Contact
+        </p>
         <Button>Sign up</Button>
       </div>
     </div>
