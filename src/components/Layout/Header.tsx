@@ -1,7 +1,8 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { ChevronDownIcon } from "@radix-ui/react-icons";
+import MenuIcon from "@mui/icons-material/Menu";
+
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -12,11 +13,26 @@ import {
   NavigationMenuTrigger,
   NavigationMenuViewport,
 } from "@/components/ui/navigation-menu";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuPortal,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 import { Button } from "../ui/button";
 
 const Header = () => {
   const [scrolling, setScrolling] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleScroll = () => {
     if (window.scrollY > 50) {
@@ -35,7 +51,7 @@ const Header = () => {
 
   return (
     <div
-      className={`w-full py-6 px-36 fixed top-0 transition-background duration-300 ease-in-out ${
+      className={`w-full py-3 px-4 sm:py-4 sm:px-8 md:py-6 md:px-36 fixed top-0 transition-background duration-300 ease-in-out z-40 ${
         scrolling ? "bg-background" : "bg-transparent"
       } flex justify-between items-center `}
     >
@@ -46,7 +62,7 @@ const Header = () => {
         alt="Orchid Company Logo"
         className="w-28 h-full"
       />
-      <div className="flex gap-6 items-center">
+      <div className="gap-6 items-center hidden md:flex">
         <p
           className={` ${
             scrolling ? "text-foreground opacity-60" : "text-white"
@@ -140,6 +156,49 @@ const Header = () => {
           Contact
         </p>
         <Button>Sign up</Button>
+      </div>
+      {/* Mobile Sidebar */}
+      <div className="md:hidden block">
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <MenuIcon
+              className={` ${
+                scrolling ? "text-foreground opacity-60" : "text-white"
+              }  text-3xl cursor-pointer`}
+            />
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="w-40">
+            <DropdownMenuGroup>
+              <DropdownMenuItem>Home</DropdownMenuItem>
+              <DropdownMenuSub>
+                <DropdownMenuSubTrigger>Services</DropdownMenuSubTrigger>
+                <DropdownMenuPortal>
+                  <DropdownMenuSubContent>
+                    <DropdownMenuItem>Relocation Services</DropdownMenuItem>
+                    <DropdownMenuItem>Painting Service</DropdownMenuItem>
+                    <DropdownMenuItem>Interior Design</DropdownMenuItem>
+                    <DropdownMenuItem>Sanitization Service</DropdownMenuItem>
+                    <DropdownMenuItem>Cleaning Services</DropdownMenuItem>
+                    <DropdownMenuItem>Pest Control</DropdownMenuItem>
+                    <DropdownMenuItem>Plumber Services</DropdownMenuItem>
+                    <DropdownMenuItem>Repair & Maintenance</DropdownMenuItem>
+                    <DropdownMenuItem>Car Rental & Taxi</DropdownMenuItem>
+                    <DropdownMenuItem>Event Management</DropdownMenuItem>
+                    <DropdownMenuItem>Photography</DropdownMenuItem>
+                    <DropdownMenuItem>Wedding Bridal Makeup</DropdownMenuItem>
+                  </DropdownMenuSubContent>
+                </DropdownMenuPortal>
+              </DropdownMenuSub>
+              <DropdownMenuItem>About</DropdownMenuItem>
+              <DropdownMenuItem>Blog</DropdownMenuItem>
+              <DropdownMenuItem>Contact</DropdownMenuItem>
+              <DropdownMenuItem>
+              <Button>Sign up</Button>
+              </DropdownMenuItem>
+            </DropdownMenuGroup>
+         
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
     </div>
   );

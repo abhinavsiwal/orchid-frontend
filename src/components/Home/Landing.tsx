@@ -34,22 +34,15 @@ const Landing = () => {
   };
 
   return (
-    <div className="w-full h-screen  flex items-center justify-center">
-      <div className="image-wrap absolute h-screen -z-10 h-sc">
-        <Image
-          src="/assets/images/bg-home.jpg"
-          alt="home"
-          width={1200}
-          height={1200}
-        />
-      </div>
-      <div className="w-full flex items-center justify-center flex-col gap-8 px-36">
-        <h6 className="text-secondary inter text-7xl font-bold text-center ">
+    <div className="w-full h-screen relative flex items-center justify-center overflow-hidden">
+      <div className="absolute inset-0 image-wrap -z-10 min-h-screen h-screen overflow-hidden bg-no-repeat bg-center bg-cover"></div>
+      <div className="w-full flex items-center justify-center flex-col gap-8 px-4 xs:px-16 sm:px-28 md:px-36">
+        <h6 className="text-secondary inter text-5xl md:text-7xl font-bold text-center ">
           Hire <span className="text-primary font-extrabold">Experts</span> &
           Get Your Job Done
         </h6>
-        <div className="w-full p-4 rounded-lg shadow bg-background  gap-8 items-center grid grid-cols-12">
-          <div className="w-full flex items-center gap-2 col-span-5 border-r border-r-primary">
+        <div className="xs:w-full p-4 rounded-lg shadow bg-background  gap-8 items-center grid grid-cols-12 space-y-2 md:space-y-0 ">
+          <div className="w-full flex items-center gap-2 col-span-12 md:border-none border border-gray-400 p-2 md:p-0 rounded z-40 md:col-span-5 md:border-r md:border-r-primary">
             <LocationOnIcon className="text-primary" />
             {/* <input
               type="text"
@@ -76,36 +69,40 @@ const Landing = () => {
                       placeholder: "Search City",
 
                       className:
-                        "w-[40rem] bg-transparent outline-none border-none text-lg  text-secondary-foreground opacity-90",
+                        "w-full sm:w-[20rem] md:w-[40rem] bg-transparent outline-none md:border-none text-lg  text-secondary-foreground opacity-90",
                     })}
                   />
-                  <div className="absolute w-60 flex flex-col gap-1 bg-background p-2 rounded">
-                    {loading && <Skeleton className="h-full w-full"></Skeleton>}
-                    {suggestions.slice(0, 4).map((suggestion, index) => {
-                      const className = suggestion.active
-                        ? "cursor-pointer p-2 bg-background text-primary flex gap-1 items-center inter text-sm "
-                        : "cursor-pointer p-2 bg-background text-secondary-foreground  opacity-70 flex gap-1 items-center inter text-sm ";
-                      return (
-                        <div
-                          {...getSuggestionItemProps(suggestion, {
-                            className,
-                          })}
-                          key={index}
-                        >
-                          <LocationOnIcon
-                            className="text-secondary-foreground opacity-70"
-                            fontSize="small"
-                          />
-                          <span>{suggestion.description}</span>
-                        </div>
-                      );
-                    })}
-                  </div>
+                  {suggestions.length > 0 && (
+                    <div className="absolute w-60  flex flex-col gap-1 bg-background p-2 rounded">
+                      {loading && (
+                        <Skeleton className="h-full w-full"></Skeleton>
+                      )}
+                      {suggestions.slice(0, 4).map((suggestion, index) => {
+                        const className = suggestion.active
+                          ? "cursor-pointer p-2 bg-background text-primary flex gap-1 items-center inter text-sm "
+                          : "cursor-pointer p-2 bg-background text-secondary-foreground  opacity-70 flex gap-1 items-center inter text-sm ";
+                        return (
+                          <div
+                            {...getSuggestionItemProps(suggestion, {
+                              className,
+                            })}
+                            key={index}
+                          >
+                            <LocationOnIcon
+                              className="text-secondary-foreground opacity-70"
+                              fontSize="small"
+                            />
+                            <span>{suggestion.description}</span>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
                 </div>
               )}
             </PlacesAutocomplete>
           </div>
-          <div className="w-full flex items-center gap-2 col-span-5 border-r border-r-primary">
+          <div className="w-full flex items-center gap-2 col-span-12 md:border-none border border-gray-400 p-1 px-2 md:p-2 rounded z-40 md:col-span-5 md:border-r md:border-r-primary">
             <StoreIcon className="text-primary" />
             <Select value="">
               <SelectTrigger className="w-full bg-transparent outline-none border-none text-lg  text-secondary-foreground opacity-90 shadow-none focus:ring-0    ">
@@ -118,7 +115,7 @@ const Landing = () => {
               </SelectContent>
             </Select>
           </div>
-          <Button className="col-span-2">Search</Button>
+          <Button className="col-span-12 md:col-span-2">Search</Button>
         </div>
       </div>
     </div>
