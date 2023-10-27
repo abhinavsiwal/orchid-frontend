@@ -51,7 +51,7 @@ const Header = () => {
 
   return (
     <div
-      className={`w-full py-3 px-4 sm:py-4 sm:px-8 md:py-6 md:px-36 fixed top-0 transition-background duration-300 ease-in-out z-40 ${
+      className={`w-full py-3 px-4 sm:py-4 sm:px-8 md:py-6 md:px-36 fixed top-0 transition-background duration-300 ease-in-out z-[100] ${
         scrolling ? "bg-background" : "bg-transparent"
       } flex justify-between items-center `}
     >
