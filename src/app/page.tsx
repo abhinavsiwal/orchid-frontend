@@ -7,6 +7,7 @@ import parseGooglePlace from "parse-google-place";
 import { useAppDispatch } from "@/store/redux-hooks";
 import { setLocation } from "@/store/slices/location";
 import Categories from "@/components/Home/Categories";
+import Works from "@/components/Home/Works";
 
 export default function Home() {
   const dispatch  = useAppDispatch();
@@ -42,6 +43,7 @@ export default function Home() {
     <div className="w-full flex-flex-col gap-16 ">
       <Landing />
       <Categories />
+      <Works />
     </div>
   );
 }

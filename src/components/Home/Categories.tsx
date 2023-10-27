@@ -11,7 +11,7 @@ const Categories = () => {
   return (
     <div className="w-full px-32 py-16 flex flex-col gap-12">
       <div className="w-full flex justify-between">
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-4">
           <h6 className="spartan text-xl text-blue uppercase tracking-widest font-medium">
             Categories
           </h6>
