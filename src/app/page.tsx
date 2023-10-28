@@ -8,6 +8,7 @@ import { useAppDispatch } from "@/store/redux-hooks";
 import { setLocation } from "@/store/slices/location";
 import Categories from "@/components/Home/Categories";
 import Works from "@/components/Home/Works";
+import Stats from "@/components/Home/Stats";
 
 export default function Home() {
   const dispatch  = useAppDispatch();
@@ -44,6 +45,7 @@ export default function Home() {
       <Landing />
       <Categories />
       <Works />
+      <Stats />
     </div>
   );
 }
