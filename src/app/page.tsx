@@ -10,6 +10,7 @@ import Categories from "@/components/Home/Categories";
 import Works from "@/components/Home/Works";
 import Stats from "@/components/Home/Stats";
 import RecentBlogs from "@/components/Home/RecentBlogs";
+import Choose from "@/components/Home/Choose";
 
 export default function Home() {
   const dispatch  = useAppDispatch();
@@ -45,8 +46,9 @@ export default function Home() {
     <div className="w-full flex-flex-col gap-16 ">
       <Landing />
       <Categories />
-      <Works />
       <Stats />
+      <Works />
+      <Choose />
       <RecentBlogs />
     </div>
   );
