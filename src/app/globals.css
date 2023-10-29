@@ -485,3 +485,24 @@
     margin: 30px;
   }
 }
+
+html::-webkit-scrollbar {
+    width: 12px;
+    height: 6px;
+  }
+  html::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: rgba(0,0,0,0.1);
+  }
+  html::-webkit-scrollbar-thumb{
+    border-radius: 10px;
+    background: #f97316;
+  }
+  html::-webkit-scrollbar-thumb:hover{
+  	background: #f97316;
+  }
+  html::-webkit-scrollbar-thumb:active{
+  	background: #f97316;
+  }
+  
+

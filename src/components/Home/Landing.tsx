@@ -36,12 +36,12 @@ const Landing = () => {
   return (
     <div className="w-full h-screen relative flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0 image-wrap -z-10 min-h-screen h-screen overflow-hidden bg-no-repeat bg-center bg-cover"></div>
-      <div className="w-full flex items-center justify-center flex-col gap-8 px-4 xs:px-16 sm:px-28 md:px-36">
+      <div className="w-full flex items-center justify-center flex-col gap-8 px-4 xs:px-12 sm:px-28 md:px-36">
         <h6 className="text-secondary inter text-5xl md:text-7xl font-bold text-center ">
           Hire <span className="text-primary font-extrabold">Experts</span> &
           Get Your Job Done
         </h6>
-        <div className="xs:w-full p-4 rounded-lg shadow bg-background  gap-8 items-center grid grid-cols-12 space-y-2 md:space-y-0 ">
+        <div className="xs:w-full px-4 py-4 md:py-1 rounded-lg shadow bg-background  md:gap-8 items-center grid grid-cols-12 space-y-4 md:space-y-0 ">
           <div className="w-full flex items-center gap-2 col-span-12 md:border-none border border-gray-400 p-2 md:p-0 rounded z-40 md:col-span-5 md:border-r md:border-r-primary">
             <LocationOnIcon className="text-primary" />
             {/* <input

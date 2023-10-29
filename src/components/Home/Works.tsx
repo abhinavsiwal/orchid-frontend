@@ -4,10 +4,10 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 import LightbulbOutlinedIcon from '@mui/icons-material/LightbulbOutlined';
 const Works = () => {
   return (
-    <div className="w-full px-32 py-16 flex flex-col gap-20">
+    <div className="w-full px-8 sm:px-12 md:px-20 lg:px-32 py-16 flex flex-col gap-12 md:gap-20">
       {/* Heading */}
-      <div className="w-full flex justify-between">
-        <div className="flex flex-col gap-4">
+      <div className="w-full  flex md:flex-row flex-col justify-between gap-2">
+        <div className="flex flex-col md:items-start items-center gap-4">
           <h6 className="spartan text-xl text-blue uppercase tracking-widest font-medium">
             Steps
           </h6>
@@ -15,13 +15,13 @@ const Works = () => {
             How it Works
           </h4>
         </div>
-        <p className="text-gray-400 inter break-words text-lg font-light ">
+        <p className="text-gray-400 inter break-words md:text-start text-center  text-md md:text-lg font-light ">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do usmod{" "}
           <br />
           tempor incididunt ut labore et dolore magna aliqua.
         </p>
       </div>
-      <div className="w-full grid grid-cols-3">
+      <div className="w-full grid grid-cols-1 gap-12 md:grid-cols-3">
         <div className="flex flex-col items-center justify-center gap-4  group">
             <div className="p-8 rounded-full bg-orange-100 group-hover:bg-primary cursor-pointer">
                 <ArticleOutlinedIcon className="text-4xl text-primary group-hover:bg-orange-100 " />

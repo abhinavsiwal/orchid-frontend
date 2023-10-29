@@ -3,9 +3,9 @@ import React from "react";
 
 const RecentBlogs = () => {
   return (
-    <div className="w-full px-32 py-16 flex flex-col gap-12">
-      <div className="w-full flex justify-between">
-        <div className="flex flex-col gap-4">
+    <div className="w-full px-8 sm:px-12 md:px-20 lg:px-32 py-16 flex flex-col gap-12">
+      <div className="w-full flex md:flex-row flex-col justify-between gap-2">
+        <div className="flex flex-col gap-4 md:items-start items-center">
           <h6 className="spartan text-xl text-blue uppercase tracking-widest font-medium">
             Blogs
           </h6>
@@ -13,13 +13,13 @@ const RecentBlogs = () => {
             Recent Blogs
           </h4>
         </div>
-        <p className="text-gray-400 inter break-words text-lg font-light ">
+        <p className="text-gray-400 inter break-words text-lg font-light md:text-start text-center ">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do usmod{" "}
           <br />
           tempor incididunt ut labore et dolore magna aliqua.
         </p>
       </div>
-      <div className="grid grid-cols-3 gap-6">
+      <div className="grid md:grid-cols-3 gap-6">
         <div className="hover-effect bg-[#f8f5ff] border border-[#dddddd]  w-full flex flex-col cursor-pointer   ">
           <Image
             src="/assets/images/blog/1.jpg"

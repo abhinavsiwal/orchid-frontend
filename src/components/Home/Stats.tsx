@@ -5,12 +5,12 @@ const Stats = () => {
   const formatValue = (value: Number) => value.toFixed(0);
 
   return (
-    <div className="w-full px-32 py-28 flex items-center justify-between gap-16 bg-primary">
+    <div className="w-full px-8 sm:px-12 md:px-20 lg:px-32 py-16 md:py-28 flex md:flex-row flex-col items-center justify-between gap-16 bg-primary">
     <div className="flex flex-col gap-4">
-      <div className="spartan text-xl text-blue uppercase tracking-widest font-medium">
+      <div className="spartan text-lg md:text-xl text-blue uppercase tracking-widest font-medium">
         Statics
       </div>
-      <div className="inter text-5xl font-bold text-white">
+      <div className="inter text-3xl md:text-5xl font-bold text-white">
         Trusted by thousands of people all over the world
       </div>
       <p className="text-white inter font-medium">

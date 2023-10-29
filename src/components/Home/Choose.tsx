@@ -5,16 +5,16 @@ import QueryStatsIcon from "@mui/icons-material/QueryStats";
 import Image from "next/image";
 const Choose = () => {
   return (
-    <div className="w-full px-32 py-8 ">
-      <div className="bg-primary rounded-3xl p-12 grid grid-cols-2  ">
-        <div className="flex flex-col gap-4 ">
-          <h6 className="spartan text-xl text-blue uppercase tracking-widest font-medium">
+    <div className="w-full px-4 sm:px-12 md:px-20 lg:px-32 py-8 ">
+      <div className="bg-primary rounded-3xl p-6 sm:p-12 grid grid-cols-1 md:grid-cols-2  ">
+        <div className="flex flex-col  md:items-start items-center gap-4 ">
+          <h6 className="spartan text-lg md:text-xl text-blue uppercase tracking-widest font-medium">
             Blogs
           </h6>
-          <h4 className="font-bold text-4xl text-white inter tracking-wide ">
+          <h4 className="font-bold text-3xl md:text-4xl text-white inter tracking-wide ">
             Why Choose Us
           </h4>
-          <p className="text-white inter break-words text-lg font-light ">
+          <p className="text-white md:text-start text-center inter break-words text-lg font-light ">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             usmod <br />
             tempor incididunt ut labore et dolore magna aliqua.
