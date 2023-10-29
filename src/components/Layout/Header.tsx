@@ -66,7 +66,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Textarea } from "../ui/textarea";
 
-const formSchema = z.object({
+const formSchema:any = z.object({
   name: z
     .string()
     .min(3, "Name must be atleast 3 characters long")
