@@ -65,8 +65,13 @@ import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Textarea } from "../ui/textarea";
+import axios from "axios";
+import { callAxios } from "@/utils/axios";
+import { useAppDispatch } from "@/store/redux-hooks";
+import { setServices as setServices1 } from "@/store/slices/services";
+import Link from "next/link";
 
-const formSchema:any = z.object({
+const formSchema: any = z.object({
   name: z
     .string()
     .min(3, "Name must be atleast 3 characters long")
@@ -89,7 +94,8 @@ const formSchema:any = z.object({
 
 const Header = () => {
   const [scrolling, setScrolling] = useState(false);
-
+  const [services, setServices] = useState([] as any);
+  const dispatch = useAppDispatch();
   const handleScroll = () => {
     if (window.scrollY > 50) {
       setScrolling(true);
@@ -116,6 +122,21 @@ const Header = () => {
       service: "",
     },
   });
+
+  const getServices = async () => {
+    try {
+      const { data } = await callAxios("get", "services/getAllServices");
+      console.log(data);
+      setServices(data.services);
+      dispatch(setServices1(data));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getServices();
+  }, []);
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     // Do something with the form values.
@@ -156,52 +177,19 @@ const Header = () => {
               </NavigationMenuTrigger>
               <NavigationMenuContent>
                 <NavigationMenuLink>
-                  <div className="flex gap-1 w-full ">
-                    <div className="flex flex-col gap-1 p-2 w-full ">
-                      <p className="text-foreground opacity-70 hover:opacity-100 cursor-pointer inter whitespace-nowrap ">
-                        Relocation Services
-                      </p>
-
-                      <p className="text-foreground opacity-70 hover:opacity-100 cursor-pointer inter whitespace-nowrap ">
-                        Interior Design
-                      </p>
-
-                      <p className="text-foreground opacity-70 hover:opacity-100 cursor-pointer inter whitespace-nowrap ">
-                        Cleaning Services
-                      </p>
-
-                      <p className="text-foreground opacity-70 hover:opacity-100 cursor-pointer inter whitespace-nowrap ">
-                        Plumber Services
-                      </p>
-
-                      <p className="text-foreground opacity-70 hover:opacity-100 cursor-pointer inter whitespace-nowrap">
-                        Car Rental & Taxi
-                      </p>
-
-                      <p className="text-foreground opacity-70 hover:opacity-100 cursor-pointer inter whitespace-nowrap">
-                        Photography
-                      </p>
-                    </div>
-                    <div className="flex flex-col gap-1 p-2 w-full ">
-                      <p className="text-foreground opacity-70  inter whitespace-nowrap hover:opacity-100 cursor-pointer  ">
-                        Painting Service
-                      </p>
-                      <p className="text-foreground opacity-70 inter whitespace-nowrap hover:opacity-100 cursor-pointer">
-                        Sanitization Service
-                      </p>
-                      <p className="text-foreground opacity-70 whitespace-nowrap inter hover:opacity-100 cursor-pointer">
-                        Pest Control
-                      </p>
-                      <p className="text-foreground opacity-70 inter whitespace-nowrap hover:opacity-100 cursor-pointer">
-                        Repair & Maintenance
-                      </p>
-                      <p className="text-foreground opacity-70 inter whitespace-nowrap hover:opacity-100 cursor-pointer">
-                        Event Management
-                      </p>
-                      <p className="text-foreground opacity-70 inter whitespace-nowrap hover:opacity-100 cursor-pointer">
-                        Wedding Bridal Makeup
-                      </p>
-                    </div>
+                  <div className="w-full flex flex-col gap-2 p-2 ">
+                    {services?.map((service: any) => {
+                      return (
+                        <Link href={`/service/${service?._id}`}>
+                          <p
+                            key={service?._id}
+                            className=" w-full text-foreground opacity-70 hover:opacity-100 cursor-pointer inter whitespace-nowrap "
+                          >
+                            {service?.name}
+                          </p>
+                        </Link>
+                      );
+                    })}
                   </div>
                 </NavigationMenuLink>
               </NavigationMenuContent>

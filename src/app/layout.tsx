@@ -4,6 +4,8 @@ import type { Metadata } from "next";
 
 import ReduxProvider from "./ReduxProvider";
 import Footer from "@/components/Layout/Footer";
+import { Suspense } from "react";
+import Loading from "./loading";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -21,6 +23,7 @@ export default function RootLayout({
       <body className="w-full">
         <ReduxProvider>
           <Header />
+          <Suspense fallback={<Loading />} />
           {children}
           <Footer />
         </ReduxProvider>
