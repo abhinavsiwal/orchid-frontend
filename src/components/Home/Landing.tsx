@@ -113,7 +113,7 @@ const Landing = () => {
                 {
                   services?.map((service) => {
                     return (
-                      <SelectItem value={service?._id}>
+                      <SelectItem value={service?._id} key={service?._id} >
                         {service?.name}
                       </SelectItem>
                     );
