@@ -180,7 +180,7 @@ const Header = () => {
                   <div className="w-full flex flex-col gap-2 p-2 ">
                     {services?.map((service: any) => {
                       return (
-                        <Link href={`/service/${service?._id}`}>
+                        <Link href={`/service/${service?._id}`} key={service?._id} >
                           <p
                             key={service?._id}
                             className=" w-full text-foreground opacity-70 hover:opacity-100 cursor-pointer inter whitespace-nowrap "
