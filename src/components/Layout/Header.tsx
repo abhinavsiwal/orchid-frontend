@@ -101,19 +101,16 @@ const Header = () => {
   const dispatch = useAppDispatch();
   console.log(pathname);
   const handleScroll = () => {
-
     if (pathname !== "/") {
       setScrolling(true);
       return;
-    } 
+    }
 
     if (window.scrollY > 200) {
       setScrolling(true);
     } else {
       setScrolling(false);
     }
-
-   
   };
 
   useEffect(() => {
@@ -124,13 +121,11 @@ const Header = () => {
   }, [pathname]);
 
   useEffect(() => {
-    
-    if(pathname === "/") {
-      setScrolling(false)
+    if (pathname === "/") {
+      setScrolling(false);
     } else {
-      setScrolling(true)
+      setScrolling(true);
     }
-
   }, [pathname]);
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -161,7 +156,6 @@ const Header = () => {
   }, []);
 
   function onSubmit(values: z.infer<typeof formSchema>) {
- 
     console.log(values);
   }
 
@@ -181,6 +175,7 @@ const Header = () => {
         />
       </Link>
       <div className="gap-6 items-center hidden md:flex">
+        <Link href="/">
         <p
           className={` ${
             scrolling ? "text-foreground opacity-60" : "text-white"
@@ -188,6 +183,7 @@ const Header = () => {
         >
           Home
         </p>
+        </Link>
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>
@@ -223,28 +219,24 @@ const Header = () => {
           </NavigationMenuList>
         </NavigationMenu>
         <Link href="/about-us">
-        <p
-          className={` ${
-            scrolling ? "text-foreground opacity-60" : "text-white"
-          }  spartan font-medium  text-lg cursor-pointer`}
-        >
-          About
-        </p>
+          <p
+            className={` ${
+              scrolling ? "text-foreground opacity-60" : "text-white"
+            }  spartan font-medium  text-lg cursor-pointer`}
+          >
+            About
+          </p>
         </Link>
-        <p
-          className={` ${
-            scrolling ? "text-foreground opacity-60" : "text-white"
-          }  spartan font-medium  text-lg cursor-pointer`}
-        >
-          Blog
-        </p>
-        <p
-          className={` ${
-            scrolling ? "text-foreground opacity-60" : "text-white"
-          }  spartan font-medium  text-lg cursor-pointer`}
-        >
-          Contact
-        </p>
+        <Link href="/blogs" >
+          <p
+            className={` ${
+              scrolling ? "text-foreground opacity-60" : "text-white"
+            }  spartan font-medium  text-lg cursor-pointer`}
+          >
+            Blog
+          </p>
+        </Link>
+      
         <Button>Sign up</Button>
         <Contact />
       </div>
@@ -343,7 +335,11 @@ const Header = () => {
                     <FormItem>
                       <FormLabel>Phone*</FormLabel>
                       <FormControl>
-                        <Input placeholder="Enter Your Phone" type="number" {...field} />
+                        <Input
+                          placeholder="Enter Your Phone"
+                          type="number"
+                          {...field}
+                        />
                       </FormControl>
 
                       <FormMessage />
