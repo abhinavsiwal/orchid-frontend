@@ -222,6 +222,7 @@ const Header = () => {
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
+        <Link href="/about-us">
         <p
           className={` ${
             scrolling ? "text-foreground opacity-60" : "text-white"
@@ -229,6 +230,7 @@ const Header = () => {
         >
           About
         </p>
+        </Link>
         <p
           className={` ${
             scrolling ? "text-foreground opacity-60" : "text-white"
