@@ -63,13 +63,14 @@ import {
 } from "../ui/select";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import { Textarea } from "../ui/textarea";
 import axios from "axios";
 import { callAxios } from "@/utils/axios";
 import { useAppDispatch } from "@/store/redux-hooks";
 import { setServices as setServices1 } from "@/store/slices/services";
 import Link from "next/link";
+import { usePathname, useSearchParams } from "next/navigation";
 
 const formSchema: any = z.object({
   name: z
@@ -95,13 +96,24 @@ const formSchema: any = z.object({
 const Header = () => {
   const [scrolling, setScrolling] = useState(false);
   const [services, setServices] = useState([] as any);
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
   const dispatch = useAppDispatch();
+  console.log(pathname);
   const handleScroll = () => {
-    if (window.scrollY > 50) {
+
+    if (pathname !== "/") {
+      setScrolling(true);
+      return;
+    } 
+
+    if (window.scrollY > 200) {
       setScrolling(true);
     } else {
       setScrolling(false);
     }
+
+   
   };
 
   useEffect(() => {
@@ -109,7 +121,17 @@ const Header = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [pathname]);
+
+  useEffect(() => {
+    
+    if(pathname === "/") {
+      setScrolling(false)
+    } else {
+      setScrolling(true)
+    }
+
+  }, [pathname]);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -139,8 +161,7 @@ const Header = () => {
   }, []);
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
+ 
     console.log(values);
   }
 
@@ -150,13 +171,15 @@ const Header = () => {
         scrolling ? "bg-background" : "bg-transparent"
       } flex justify-between items-center `}
     >
-      <Image
-        src="/assets/images/logo.png"
-        height={120}
-        width={120}
-        alt="Orchid Company Logo"
-        className="w-28 h-full"
-      />
+      <Link href="/">
+        <Image
+          src="/assets/images/logo.png"
+          height={120}
+          width={120}
+          alt="Orchid Company Logo"
+          className="w-28 h-full"
+        />
+      </Link>
       <div className="gap-6 items-center hidden md:flex">
         <p
           className={` ${
@@ -180,7 +203,10 @@ const Header = () => {
                   <div className="w-full flex flex-col gap-2 p-2 ">
                     {services?.map((service: any) => {
                       return (
-                        <Link href={`/service/${service?._id}`} key={service?._id} >
+                        <Link
+                          href={`/service/${service?._id}`}
+                          key={service?._id}
+                        >
                           <p
                             key={service?._id}
                             className=" w-full text-foreground opacity-70 hover:opacity-100 cursor-pointer inter whitespace-nowrap "
@@ -315,7 +341,7 @@ const Header = () => {
                     <FormItem>
                       <FormLabel>Phone*</FormLabel>
                       <FormControl>
-                        <Input placeholder="Enter Your Phone" {...field} />
+                        <Input placeholder="Enter Your Phone" type="number" {...field} />
                       </FormControl>
 
                       <FormMessage />
@@ -345,7 +371,7 @@ const Header = () => {
                 />
                 <FormField
                   control={form.control}
-                  name="city"
+                  name="service"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Service*</FormLabel>
@@ -366,7 +392,7 @@ const Header = () => {
                 />
                 <FormField
                   control={form.control}
-                  name="phone"
+                  name="message"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Message*</FormLabel>
