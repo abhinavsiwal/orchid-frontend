@@ -20,16 +20,16 @@ async function getSingleServie(id: string) {
     throw new Error("Failed to fetch data");
   }
   const data = await res.json();
-  console.log(data);
+ 
 
   return data;
 }
 
 export default async function Page({ params }: { params: { id: string } }) {
-  console.log(params.id);
+ 
 
   const service = await getSingleServie(params.id);
-  // console.log(service);
+ 
 
   return (
     <div className="w-full px-8 mt-20 sm:px-12 md:px-20 lg:px-32 py-16 flex flex-col gap-12 md:gap-20">
