@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import locationReducer from "./slices/location";
-import servicesReducer from "./slices/services";
+import categoryReducer from "./slices/categories";
 export const store = configureStore({
   reducer: {
     location: locationReducer,
-    services:servicesReducer,
+    categories:categoryReducer,
   },
 });
 

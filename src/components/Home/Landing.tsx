@@ -17,7 +17,7 @@ import {
 import { Button } from "../ui/button";
 const Landing = () => {
   const { city } = useAppSelector((state) => state.location);
-  const { services } = useAppSelector((state) => state.services);
+  const { categories } = useAppSelector((state) => state.categories);
   const [address, setAddress] = useState(city);
 
   useEffect(() => {
@@ -110,16 +110,13 @@ const Landing = () => {
                 <SelectValue placeholder="Select Category" className="0" />
               </SelectTrigger>
               <SelectContent className="">
-                {
-                  services?.map((service) => {
-                    return (
-                      <SelectItem value={service?._id} key={service?._id} >
-                        {service?.name}
-                      </SelectItem>
-                    );
-                  })
-                }
-            
+                {categories?.map((category) => {
+                  return (
+                    <SelectItem value={category?._id} key={category?._id}>
+                      {category?.name}
+                    </SelectItem>
+                  );
+                })}
               </SelectContent>
             </Select>
           </div>

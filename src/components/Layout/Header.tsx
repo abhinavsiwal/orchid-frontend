@@ -68,7 +68,7 @@ import { Textarea } from "../ui/textarea";
 import axios from "axios";
 import { callAxios } from "@/utils/axios";
 import { useAppDispatch } from "@/store/redux-hooks";
-import { setServices as setServices1 } from "@/store/slices/services";
+import { setCategories as setCategories1 } from "@/store/slices/categories";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 
@@ -95,9 +95,9 @@ const formSchema: any = z.object({
 
 const Header = () => {
   const [scrolling, setScrolling] = useState(false);
-  const [services, setServices] = useState([] as any);
+  const [categories, setCategories] = useState([] as any);
   const pathname = usePathname();
-  const searchParams = useSearchParams();
+
   const dispatch = useAppDispatch();
   console.log(pathname);
   const handleScroll = () => {
@@ -142,10 +142,10 @@ const Header = () => {
 
   const getServices = async () => {
     try {
-      const { data } = await callAxios("get", "services/getAllServices");
+      const { data } = await callAxios("get", "category/getAllCategories");
       console.log(data);
-      setServices(data.services);
-      dispatch(setServices1(data));
+      setCategories(data.categories);
+      dispatch(setCategories1(data));
     } catch (error) {
       console.log(error);
     }
@@ -176,13 +176,13 @@ const Header = () => {
       </Link>
       <div className="gap-6 items-center hidden md:flex">
         <Link href="/">
-        <p
-          className={` ${
-            scrolling ? "text-foreground opacity-60" : "text-white"
-          }  spartan font-medium  text-lg cursor-pointer`}
-        >
-          Home
-        </p>
+          <p
+            className={` ${
+              scrolling ? "text-foreground opacity-60" : "text-white"
+            }  spartan font-medium  text-lg cursor-pointer`}
+          >
+            Home
+          </p>
         </Link>
         <NavigationMenu>
           <NavigationMenuList>
@@ -192,22 +192,22 @@ const Header = () => {
                   scrolling ? "text-foreground opacity-60" : "text-white"
                 }  spartan font-medium  text-lg cursor-pointer bg-transparent`}
               >
-                Services
+                Categories
               </NavigationMenuTrigger>
               <NavigationMenuContent>
                 <NavigationMenuLink>
                   <div className="w-full flex flex-col gap-2 p-2 ">
-                    {services?.map((service: any) => {
+                    {categories?.map((category: any) => {
                       return (
                         <Link
-                          href={`/service/${service?._id}`}
-                          key={service?._id}
+                          href={`/category/${category?._id}`}
+                          key={category?._id}
                         >
                           <p
-                            key={service?._id}
+                            key={category?._id}
                             className=" w-full text-foreground opacity-70 hover:opacity-100 cursor-pointer inter whitespace-nowrap "
                           >
-                            {service?.name}
+                            {category?.name}
                           </p>
                         </Link>
                       );
@@ -227,7 +227,7 @@ const Header = () => {
             About
           </p>
         </Link>
-        <Link href="/blogs" >
+        <Link href="/blogs">
           <p
             className={` ${
               scrolling ? "text-foreground opacity-60" : "text-white"
@@ -236,7 +236,7 @@ const Header = () => {
             Blog
           </p>
         </Link>
-      
+
         <Button>Sign up</Button>
         <Contact />
       </div>

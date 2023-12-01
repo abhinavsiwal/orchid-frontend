@@ -57,14 +57,14 @@ const formSchema = z.object({
   email: z.string().email("Invalid email address"),
   message: z.string().min(10, "Message must be atleast 10 characters long"),
   // city: z.string().min(3, "City must be atleast 3 characters long"),
-  service: z.string().min(3, "Please select a service"),
+  category: z.string().min(3, "Please select a category"),
 });
 
 const Contact = () => {
   const { address } = useAppSelector((state) => state.location);
   console.log(address);
 
-  const { services } = useAppSelector((state) => state.services);
+  const { categories } = useAppSelector((state) => state.categories);
   const [loading, setLoading] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -73,7 +73,7 @@ const Contact = () => {
       phone: undefined,
       email: "",
       message: "",
-      service: "",
+      category: "",
     },
   });
 
@@ -192,10 +192,10 @@ const Contact = () => {
      /> */}
               <FormField
                 control={form.control}
-                name="service"
+                name="category"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Service*</FormLabel>
+                    <FormLabel>Category*</FormLabel>
                     <FormControl>
                       <Select
                         onValueChange={field.onChange}
@@ -203,13 +203,13 @@ const Contact = () => {
                         {...field}
                       >
                         <SelectTrigger className="w-full">
-                          <SelectValue placeholder="Select Service" />
+                          <SelectValue placeholder="Select Category" />
                         </SelectTrigger>
                         <SelectContent>
-                          {services?.map((service) => {
+                          {categories?.map((category) => {
                             return (
-                              <SelectItem value={service?._id} key={service?._id} >
-                                {service?.name}
+                              <SelectItem value={category?._id} key={category?._id} >
+                                {category?.name}
                               </SelectItem>
                             );
                           })}

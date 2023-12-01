@@ -10,8 +10,8 @@ import { useAppSelector } from "@/store/redux-hooks";
 
 const Categories = () => {
   const [swiperInstance, setSwiperInstance] = useState(null as any);
-  const { services } = useAppSelector((state) => state.services);
-  console.log(services);
+  const { categories } = useAppSelector((state) => state.categories);
+  console.log(categories);
 
   return (
     <div className="w-full px-8 sm:px-12 md:px-20 lg:px-32 py-16 flex flex-col gap-12">
@@ -54,22 +54,22 @@ const Categories = () => {
             },
           }}
         >
-          {services?.map((service) => {
+          {categories?.map((category) => {
             return (
-              <SwiperSlide key={service?._id} >
+              <SwiperSlide key={category?._id} >
               <div className="w-full flex flex-col items-center gap-2  ">
                 <div className="hover-effect relative flex items-center justify-center w-full ">
                   <Image
-                    src={service?.image}
+                    src={category?.image}
                     width={600}
                     height={600}
-                    alt={service?.name}
+                    alt={category?.name}
                     className="rounded-3xl cursor-pointer   "
                   />
                 </div>
   
                 <p className="text-center text-blue font-semibold text-lg inter">
-                {service?.name}
+                {category?.name}
                 </p>
               </div>
             </SwiperSlide>
