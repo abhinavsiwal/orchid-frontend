@@ -98,6 +98,10 @@ const Header = () => {
   const [categories, setCategories] = useState([] as any);
   const pathname = usePathname();
 
+
+
+
+
   const dispatch = useAppDispatch();
   console.log(pathname);
   const handleScroll = () => {
@@ -158,6 +162,8 @@ const Header = () => {
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
   }
+
+  if(pathname === "/login" || pathname==="/signup") return null;
 
   return (
     <div

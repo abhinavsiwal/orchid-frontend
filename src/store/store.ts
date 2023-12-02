@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import locationReducer from "./slices/location";
 import categoryReducer from "./slices/categories";
+import userReducer from "./slices/user";
 export const store = configureStore({
   reducer: {
     location: locationReducer,
     categories:categoryReducer,
+    user: userReducer,
   },
 });
 
