@@ -1,4 +1,5 @@
 import Categories from "@/components/Category/Categories";
+import Services from "@/components/Category/Services";
 import Image from "next/image";
 export async function generateStaticParams() {
   const data = await fetch(
@@ -52,6 +53,7 @@ export default async function Page({ params }: { params: { id: string } }) {
         </div>
       </div>
       <Categories id={params.id} />
+      <Services id={params.id} />
     </div>
   );
 }

@@ -24,7 +24,7 @@ export default function Home() {
       
         const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=AIzaSyC1Cz13aBYAbBYJL0oABZ8KZnd7imiWwA4`;
         axios.get(url).then((res) => {
-          console.log(res.data.results[0]?.formatted_address);
+          console.log(res.data.results[0]);
           
           const address:any = parseGooglePlace(res.data.results[0]);
           console.log("address", address);
