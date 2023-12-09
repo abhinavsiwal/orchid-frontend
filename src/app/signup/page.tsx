@@ -8,9 +8,6 @@ import { backendUrl } from "@/utils/axios";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { login } from "@/store/slices/user";
-import { useAppDispatch } from "@/store/redux-hooks";
-
 import {
   Form,
   FormControl,
@@ -25,16 +22,31 @@ import { Input } from "@/components/ui/input";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { login } from "@/store/slices/user";
+import { useAppDispatch } from "@/store/redux-hooks";
 
 const formSchema = z.object({
+  name: z
+    .string()
+    .min(3, "Name must be atleast 3 characters long")
+    .max(50, "Name must be less than 50 characters long"),
   email: z.string().email("Invalid email address"),
   password: z.string().min(6, "Password must be atleast 6 characters long"),
+  phone: z.string().refine(
+    (phoneNumber) => {
+      const phonePattern = /^(\d{10}|\d{4}[-\s]?\d{3}[-\s]?\d{3})$/;
+      return phonePattern.test(phoneNumber.toString());
+    },
+    {
+      message: "Please enter a valid phone number",
+    }
+  ),
 });
 
 const Page = () => {
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
   const dispatch = useAppDispatch();
+  const router = useRouter();
   const googleSignIn = async () => {
     try {
       const provider = new GoogleAuthProvider();
@@ -59,11 +71,14 @@ const Page = () => {
       toast.error(error?.response?.data?.message || "Something went wrong.");
     }
   };
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       email: "",
       password: "",
+      phone: undefined,
+      name: "",
     },
   });
 
@@ -71,14 +86,14 @@ const Page = () => {
     const payload = { ...values };
     try {
       setLoading(true);
-      const { data } = await axios.post(`${backendUrl}/auth/login`, payload);
+      const { data } = await axios.post(`${backendUrl}/auth/signup`, payload);
       console.log(data);
 
       dispatch(login(data));
       localStorage.setItem("token", data.token);
       localStorage.setItem("user", JSON.stringify(data.user));
 
-      toast.success("Login Successfull");
+      toast.success("Signup Successfull");
       router.push("/");
       setLoading(false);
       form.reset();
@@ -104,19 +119,40 @@ const Page = () => {
                   >
                     <div className="text-center mb-7">
                       <span className="inline-block mb-3 font-semibold text-base text-orange-500">
-                        Login
+                        Sign Up
                       </span>
                       <h2 className="text-3xl font-bold text-gray-700 dark:text-gray-300">
                         Join our community
                       </h2>
                     </div>
-                    <div className="w-full flex flex-wrap mb-5">
+                    <div className="w-full flex flex-wrap mb-3">
+                      <FormField
+                        control={form.control}
+                        name="name"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Name</FormLabel>
+                            <FormControl>
+                              <Input
+                                placeholder="Enter Your Name"
+                                type="text"
+                                className="w-full"
+                                {...field}
+                              />
+                            </FormControl>
+
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+                    <div className="w-full flex flex-wrap mb-3">
                       <FormField
                         control={form.control}
                         name="email"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Email*</FormLabel>
+                            <FormLabel>Email</FormLabel>
                             <FormControl>
                               <Input
                                 placeholder="Enter Your Email"
@@ -131,13 +167,13 @@ const Page = () => {
                         )}
                       />
                     </div>
-                    <div className="w-full flex flex-wrap mb-5">
+                    <div className="w-full flex flex-wrap mb-3">
                       <FormField
                         control={form.control}
                         name="password"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Password*</FormLabel>
+                            <FormLabel>Password</FormLabel>
                             <FormControl>
                               <Input
                                 placeholder="Enter Your Password"
@@ -146,29 +182,42 @@ const Page = () => {
                                 {...field}
                               />
                             </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+                    <div className="w-full flex flex-wrap mb-3">
+                      <FormField
+                        control={form.control}
+                        name="phone"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Phone</FormLabel>
+                            <FormControl>
+                              <Input
+                                placeholder="Enter Your Phone"
+                                type="number"
+                                {...field}
+                              />
+                            </FormControl>
 
                             <FormMessage />
                           </FormItem>
                         )}
                       />
+
+                      <FormMessage />
                     </div>
 
                     <button
                       className="w-full px-4 py-4 mb-4 font-semibold text-base text-gray-200 bg-orange-500 rounded dark:bg-orange-500 hover:text-orange-200 "
                       type="submit"
                     >
-                      LOGIN
+                      Create Account
                     </button>
                   </form>
                 </Form>
-                <div className="mb-4 text-center">
-                  <a
-                    href="#"
-                    className="text-sm font-semibold text-orange-700 hover:underline dark:text-orange-300 dark:hover:text-orange-500"
-                  >
-                    forgot password?
-                  </a>
-                </div>
 
                 <div
                   onClick={googleSignIn}
@@ -187,18 +236,18 @@ const Page = () => {
                     </svg>
                   </span>
                   <span className="text-xs font-bold text-orange-800 lg:text-sm dark:text-gray-400 ">
-                    Login with Google
+                    Signup with Google
                   </span>
                 </div>
                 <p className="mt-4 text-sm text-gray-700 dark:text-gray-400">
                   {" "}
-                  Need an account?{" "}
-                  <a
-                    href="#"
+                  Already have an account?{" "}
+                  <Link
+                    href="/login"
                     className="font-bold text-base text-orange-500 hover:text-orange-700 dark:text-orange-300 dark:hover:text-orange-400"
                   >
-                    Create an account
-                  </a>
+                    Login
+                  </Link>
                 </p>
               </div>
             </div>
@@ -208,7 +257,7 @@ const Page = () => {
                   Welcome
                 </span>
                 <h2 className="mt-3 mb-6 text-4xl font-bold text-gray-800 dark:text-gray-400">
-                  Join our community with your login credentials
+                  Join our community with your credentials
                 </h2>
                 <p className="text-lg text-gray-500 dark:text-orange-400">
                   Lorem ipsum dor amet set amirospis{" "}
