@@ -1,7 +1,7 @@
 import axios from "axios";
 
-export const backendUrl = "http://localhost:9000/api";
-// export const backendUrl = "https://ai-robotics.applore.in/api";
+// export const backendUrl = "http://localhost:9000/api";
+export const backendUrl = "https://ai-robotics.applore.in/api";
 // export const backendUrl = "";
 
 export const callAxios = async (method, route, body) => {

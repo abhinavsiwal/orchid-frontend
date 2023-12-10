@@ -1,4 +1,5 @@
 import ImageGallery from "@/components/Service/ImageGallery";
+import MoreServices from "@/components/Service/MoreServices";
 import ServiceDetails from "@/components/Service/ServiceDetails";
 import Image from "next/image";
 
@@ -35,7 +36,9 @@ export default async function Page({ params }: { params: { id: string } }) {
         <div className="w-full grid-cols-1  grid sm:grid-cols-2 gap-12 items-start">
           <ImageGallery images={service?.images} />
           <ServiceDetails service={service} />
+        
         </div>
+        <MoreServices category={service?.category?._id} id={service?._id} />
       </div>
     </div>
   );

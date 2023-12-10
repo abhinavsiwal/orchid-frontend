@@ -51,7 +51,7 @@ const ImageGallery = ({ images }: any) => {
               spaceBetween: 40,
             },
             240: {
-              slidesPerView: 1,
+              slidesPerView: 2,
               spaceBetween: 20,
             },
           }}
@@ -65,7 +65,7 @@ const ImageGallery = ({ images }: any) => {
                   width={400}
                   height={400}
                   alt="Product Image"
-                  className="rounded cursor-pointer w-60 h-40   "
+                  className="rounded cursor-pointer w-40 h-20  md:w-60 md:h-40   "
                 />
               </SwiperSlide>
             );

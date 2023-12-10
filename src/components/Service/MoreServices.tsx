@@ -1,64 +1,39 @@
-"use client";
-
-import React, { useState, useEffect } from "react";
-import Loader from "@/components/Layout/Loader";
-import toast from "react-hot-toast";
-import { useRouter } from "next/navigation";
-import axios from "axios";
-import { backendUrl } from "@/utils/axios";
-import Pagination from "@mui/material/Pagination";
+import React from "react";
 import Image from "next/image";
-import { useAppSelector } from "@/store/redux-hooks";
 import Link from "next/link";
 
-const Services = ({ id }: any) => {
-  const [loading, setLoading] = useState(false);
-  const router = useRouter();
-  const [services, setServices] = useState([]);
-  const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
-  const [count, setCount] = useState(0);
-  const [dataRange, setDataRange] = useState("");
-  const { user } = useAppSelector((state) => state.user);
+const getAllServicesByCategory = async (id: string) => {
+  const res = await fetch(
+    `${process.env.backendUrl}/service/getServicesByCategory/${id}`
+  );
 
-  const getServices = async () => {
-    try {
-      setLoading(true);
-      const { data } = await axios.get(
-        `${backendUrl}/service/getServicesByCategory/${id}?page=${page}`
-      );
-      console.log(data);
+  if (!res.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error("Failed to fetch data");
+  }
+  const data = await res.json();
 
-      setServices(data?.services);
-      setTotalPages(data?.totalPages);
-      setDataRange(
-        "Showing" +
-          (data?.currentPage * 10 - 9) +
-          "-" +
-          data?.currentPage * 10 +
-          " of " +
-          data?.totalCount
-      );
-      setPage(data?.currentPage);
-      setLoading(false);
-    } catch (error: any) {
-      console.log(error);
-      setLoading(false);
-      toast.error(error?.response?.data?.message || "Something went wrong.");
-    }
-  };
+  return data.services;
+};
 
-  useEffect(() => {
-    if (id) {
-      getServices();
-    }
-  }, [id]);
+const MoreServices = async ({ category, id }: any) => {
+  const allServices = await getAllServicesByCategory(category);
+  const services = allServices.filter((service: any) => service._id !== id);
 
   return (
-    <>
-      {/* <Loader loading={loading} /> */}
-      <section className="w-full flex flex-col gap-8 px-8 sm:px-12 md:px-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+    <section className="w-full flex flex-col gap-8 rounded-xl ">
+      <div className="w-full  flex md:flex-row flex-col justify-between gap-2 ">
+        <div className="flex flex-col md:items-start items-center gap-4">
+          <h6 className="spartan text-lg md:text-xl text-blue uppercase tracking-widest font-medium">
+            Services
+          </h6>
+          <h4 className="font-bold text-3xl md:text-4xl text-primary md:text-start text-center inter tracking-wide text-primary ">
+            Similar Sevices
+          </h4>
+        </div>
+       
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
           {services?.map((service: any) => {
             return (
               <div
@@ -113,35 +88,8 @@ const Services = ({ id }: any) => {
             );
           })}
         </div>
-        {services?.length > 0 && (
-          <div className="w-full flex justify-between items-center">
-            <p className="inter font-medium text-primary text-lg">
-              {dataRange}
-            </p>
-            <Pagination
-              count={totalPages}
-              variant="outlined"
-              shape="rounded"
-              color="primary"
-              sx={{
-                "& .MuiPaginationItem-root": { color: "#f97215" },
-                "& .Mui-selected": {
-                  backgroundColor: "#f97215",
-                  color: "#fff",
-                },
-                "& .MuiPaginationItem-root:hover": {
-                  backgroundColor: "#f97215",
-                  color: "#fff",
-                  border: "none",
-                },
-              }}
-              onChange={(e, value) => setPage(value)}
-            />
-          </div>
-        )}
-      </section>
-    </>
+    </section>
   );
 };
 
-export default Services;
+export default MoreServices;
