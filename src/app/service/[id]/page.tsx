@@ -1,11 +1,11 @@
 import ImageGallery from "@/components/Service/ImageGallery";
+import ServiceDetails from "@/components/Service/ServiceDetails";
 import Image from "next/image";
 
 export async function generateStaticParams() {
   const data = await fetch(
     `${process.env.backendUrl}/service/getAllServicesId`
   ).then((res) => res.json());
-
 
   return data?.services?.map((service: any) => ({
     id: service._id,
@@ -34,6 +34,7 @@ export default async function Page({ params }: { params: { id: string } }) {
       <div className="w-full px-8 mt-20 sm:px-12 md:px-20 lg:px-32 py-16 flex flex-col gap-12 md:gap-20">
         <div className="w-full grid-cols-1  grid sm:grid-cols-2 gap-12 items-start">
           <ImageGallery images={service?.images} />
+          <ServiceDetails service={service} />
         </div>
       </div>
     </div>
