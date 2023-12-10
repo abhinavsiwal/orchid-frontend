@@ -9,6 +9,7 @@ import { backendUrl } from "@/utils/axios";
 import Pagination from "@mui/material/Pagination";
 import Image from "next/image";
 import { useAppSelector } from "@/store/redux-hooks";
+import Link from "next/link";
 
 const Services = ({ id }: any) => {
   const [loading, setLoading] = useState(false);
@@ -60,7 +61,7 @@ const Services = ({ id }: any) => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
           {services?.map((service: any) => {
             return (
-              <div className="cursor-pointer rounded-xl bg-white p-3 shadow-lg hover:shadow-xl">
+              <div className="cursor-pointer rounded-xl bg-white p-3 shadow-lg hover:shadow-xl" key={service?._id} >
                 <div className="relative flex items-end overflow-hidden rounded-xl">
                   <Image
                     src={service?.images[0]}
@@ -96,7 +97,7 @@ const Services = ({ id }: any) => {
                       </span>
                     </p>
                     <div className="group inline-flex rounded-xl bg-orange-100 p-2 px-3 hover:bg-orange-200">
-                      <p className="text-primary text-sm inter ">View</p>
+                      <Link href={`/service/${service?._id}`} className="text-primary text-sm inter ">View</Link>
                     </div>
                   </div>
                 </div>
