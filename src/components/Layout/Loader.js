@@ -7,7 +7,7 @@ const Loading = dynamic(() => import("react-fullscreen-loading"), {
 });
 
 const Loader = ({ loading }) => {
-  return <Loading loading={loading} background="#fff" loaderColor="#5046E5" />;
+  return <Loading loading={loading} background="#fff" loaderColor="#f97215" />;
 };
 
 export default Loader;
