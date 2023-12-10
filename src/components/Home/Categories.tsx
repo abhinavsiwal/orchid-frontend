@@ -1,6 +1,7 @@
 
 'use client'
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import Image from "next/image";
@@ -57,6 +58,8 @@ const Categories = () => {
           {categories?.map((category) => {
             return (
               <SwiperSlide key={category?._id} >
+                <Link href={`/category/${category?._id}`} >
+
               <div className="w-full flex flex-col items-center gap-2  ">
                 <div className="hover-effect relative flex items-center justify-center w-full ">
                   <Image
@@ -72,6 +75,7 @@ const Categories = () => {
                 {category?.name}
                 </p>
               </div>
+              </Link>
             </SwiperSlide>
            
             )

@@ -154,7 +154,7 @@ const Page = () => {
                     </div>
 
                     <button
-                      className="w-full px-4 py-4 mb-4 font-semibold text-base text-gray-200 bg-orange-500 rounded dark:bg-orange-500 hover:text-orange-200 "
+                      className="w-full px-4 py-4 mb-4 font-semibold text-base text-white bg-orange-500 rounded dark:bg-orange-500 hover:text-orange-200 "
                       type="submit"
                     >
                       LOGIN
@@ -193,12 +193,12 @@ const Page = () => {
                 <p className="mt-4 text-sm text-gray-700 dark:text-gray-400">
                   {" "}
                   Need an account?{" "}
-                  <a
-                    href="#"
+                  <Link
+                    href="/signup"
                     className="font-bold text-base text-orange-500 hover:text-orange-700 dark:text-orange-300 dark:hover:text-orange-400"
                   >
                     Create an account
-                  </a>
+                  </Link>
                 </p>
               </div>
             </div>
@@ -211,7 +211,7 @@ const Page = () => {
                   Join our community with your login credentials
                 </h2>
                 <p className="text-lg text-gray-500 dark:text-orange-400">
-                  Lorem ipsum dor amet set amirospis{" "}
+                  {/* Lorem ipsum dor amet set amirospis{" "} */}
                 </p>
               </div>
             </div>

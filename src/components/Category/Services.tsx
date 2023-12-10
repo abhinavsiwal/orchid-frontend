@@ -8,6 +8,7 @@ import axios from "axios";
 import { backendUrl } from "@/utils/axios";
 import Pagination from "@mui/material/Pagination";
 import Image from "next/image";
+import { useAppSelector } from "@/store/redux-hooks";
 
 const Services = ({ id }: any) => {
   const [loading, setLoading] = useState(false);
@@ -17,6 +18,7 @@ const Services = ({ id }: any) => {
   const [totalPages, setTotalPages] = useState(1);
   const [count, setCount] = useState(0);
   const [dataRange, setDataRange] = useState("");
+  const { user } = useAppSelector((state) => state.user);
 
   const getServices = async () => {
     try {
@@ -93,15 +95,8 @@ const Services = ({ id }: any) => {
                         /{service?.serviceType}
                       </span>
                     </p>
-                    <div className="group inline-flex rounded-xl bg-orange-100 p-2 hover:bg-orange-200">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-4 w-4 text-orange-400 group-hover:text-orange-500"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path d="M5 4a2 2 0 012-2h6a2 2 0 012 2v14l-5-2.5L5 18V4z" />
-                      </svg>
+                    <div className="group inline-flex rounded-xl bg-orange-100 p-2 px-3 hover:bg-orange-200">
+                      <p className="text-primary text-sm inter ">View</p>
                     </div>
                   </div>
                 </div>
@@ -109,26 +104,32 @@ const Services = ({ id }: any) => {
             );
           })}
         </div>
-        <div className="w-full flex justify-between items-center">
-          <p className="inter font-medium text-primary text-lg">{dataRange}</p>
-          <Pagination
-            count={totalPages}
-            variant="outlined"
-            shape="rounded"
-            color="primary"
-            sx={{
-              "& .MuiPaginationItem-root": { color: "#f97215" },
-              "& .Mui-selected": { backgroundColor: "#f97215", color: "#fff" },
-              "& .MuiPaginationItem-root:hover": {
-                backgroundColor: "#f97215",
-                color: "#fff",
-                border: "none",
-              
-              },
-            }}
-            onChange={(e, value) => setPage(value)}
-          />
-        </div>
+        {services?.length > 0 && (
+          <div className="w-full flex justify-between items-center">
+            <p className="inter font-medium text-primary text-lg">
+              {dataRange}
+            </p>
+            <Pagination
+              count={totalPages}
+              variant="outlined"
+              shape="rounded"
+              color="primary"
+              sx={{
+                "& .MuiPaginationItem-root": { color: "#f97215" },
+                "& .Mui-selected": {
+                  backgroundColor: "#f97215",
+                  color: "#fff",
+                },
+                "& .MuiPaginationItem-root:hover": {
+                  backgroundColor: "#f97215",
+                  color: "#fff",
+                  border: "none",
+                },
+              }}
+              onChange={(e, value) => setPage(value)}
+            />
+          </div>
+        )}
       </section>
     </>
   );

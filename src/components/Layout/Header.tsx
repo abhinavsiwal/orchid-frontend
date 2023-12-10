@@ -27,6 +27,10 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import Settings from "@mui/icons-material/Settings";
+import Logout from "@mui/icons-material/Logout";
 
 import { Button } from "../ui/button";
 import Contact from "../Common/Contact";
@@ -67,10 +71,15 @@ import { set, useForm } from "react-hook-form";
 import { Textarea } from "../ui/textarea";
 import axios from "axios";
 import { callAxios } from "@/utils/axios";
-import { useAppDispatch } from "@/store/redux-hooks";
+import { useAppDispatch, useAppSelector } from "@/store/redux-hooks";
 import { setCategories as setCategories1 } from "@/store/slices/categories";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
+import { logout } from "@/store/slices/user";
+import { useRouter } from "next/navigation";
+import { Tooltip } from "@mui/material";
+import { ArrowDownIcon } from "@radix-ui/react-icons";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
 const formSchema: any = z.object({
   name: z
@@ -94,13 +103,26 @@ const formSchema: any = z.object({
 });
 
 const Header = () => {
+  const router = useRouter();
   const [scrolling, setScrolling] = useState(false);
+  const { user } = useAppSelector((state) => state.user);
   const [categories, setCategories] = useState([] as any);
   const pathname = usePathname();
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+  const [userDetails, setUserDetails] = useState(null as any);
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
-
-
-
+  useEffect(() => {
+    if (user) {
+      setUserDetails(user);
+    }
+  }, [user]);
 
   const dispatch = useAppDispatch();
   console.log(pathname);
@@ -163,7 +185,13 @@ const Header = () => {
     console.log(values);
   }
 
-  if(pathname === "/login" || pathname==="/signup") return null;
+  if (pathname === "/login" || pathname === "/signup") return null;
+
+  const handleLogout = () => {
+    console.log("here");
+    dispatch(logout());
+    setUserDetails(null);
+  };
 
   return (
     <div
@@ -243,8 +271,45 @@ const Header = () => {
           </p>
         </Link>
 
-        <Button>Sign up</Button>
         <Contact />
+        {userDetails ? (
+          <NavigationMenu>
+            <NavigationMenuList>
+              <NavigationMenuItem>
+                <NavigationMenuTrigger
+                  className={` w-full flex flex-col gap-1 ${
+                    scrolling ? "text-foreground opacity-60" : "text-white"
+                  }  spartan font-medium  text-sm cursor-pointer bg-transparent`}
+                >
+                  <p className="">Hi,{userDetails?.name}</p>
+                  <p className="">{userDetails?.email}</p>
+                </NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <NavigationMenuLink>
+                    <div className="w-full flex flex-col py-2 px-3 gap-3 items-center justify-center ">
+                      <div className="w-full flex gap-4 items-center cursor-pointer ">
+                        <Settings fontSize="small" />
+                        <p className="text-base inter ">Settings</p>
+                      </div>
+
+                      <div
+                        className="w-full flex gap-4 items-center cursor-pointer "
+                        onClick={handleLogout}
+                      >
+                        <Logout fontSize="small" />
+                        <p className="text-base inter ">Logout</p>
+                      </div>
+                    </div>
+                  </NavigationMenuLink>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
+        ) : (
+          <Button>
+            <Link href="/login">Login</Link>
+          </Button>
+        )}
       </div>
       {/* Mobile Sidebar */}
       <div className="md:hidden block">

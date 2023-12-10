@@ -18,12 +18,28 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Modal } from "@mui/material";
 
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { login } from "@/store/slices/user";
 import { useAppDispatch } from "@/store/redux-hooks";
+import Box from "@mui/material/Box";
+
+const style = {
+  position: "absolute" as "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "white",
+  borderRadius: "12px",
+  border: "1px solid #fff",
+  p: 2,
+  // boxShadow: 24,
+  // p: 4,
+};
 
 const formSchema = z.object({
   name: z
@@ -43,32 +59,62 @@ const formSchema = z.object({
   ),
 });
 
+const phoneSchema = z.object({
+  phone: z.string().refine(
+    (phoneNumber) => {
+      const phonePattern = /^(\d{10}|\d{4}[-\s]?\d{3}[-\s]?\d{3})$/;
+      return phonePattern.test(phoneNumber.toString());
+    },
+    {
+      message: "Please enter a valid phone number",
+    }
+  ),
+  password: z.string().min(6, "Password must be atleast 6 characters long"),
+});
+
 const Page = () => {
   const [loading, setLoading] = useState(false);
   const dispatch = useAppDispatch();
   const router = useRouter();
+  const [open, setOpen] = useState(false);
+  const [googleData, setGoogleData] = useState({} as any);
   const googleSignIn = async () => {
     try {
       const provider = new GoogleAuthProvider();
       const { user } = await signInWithPopup(auth, provider);
-      setLoading(true);
-      const { data } = await axios.post(`${backendUrl}/auth/googleAuth`, {
+
+      setGoogleData({
         email: user.email,
         name: user.displayName,
         authType: "google",
       });
+      setOpen(true);
+    } catch (error: any) {
+      console.log(error);
+
+      toast.error(error?.response?.data?.message || "Something went wrong.");
+    }
+  };
+
+  const finalSubmit = async (values: z.infer<typeof phoneSchema>) => {
+    const payload = { ...googleData, ...values };
+    try {
+      setLoading(true);
+      const { data } = await axios.post(`${backendUrl}/auth/signup`, payload);
       console.log(data);
+
       dispatch(login(data));
       localStorage.setItem("token", data.token);
       localStorage.setItem("user", JSON.stringify(data.user));
 
-      toast.success("Login Successfull");
+      toast.success("Signup Successfull");
       router.push("/");
       setLoading(false);
-    } catch (error: any) {
+      form.reset();
+    } catch (error) {
       console.log(error);
       setLoading(false);
-      toast.error(error?.response?.data?.message || "Something went wrong.");
+      toast.error("Something went wrong");
     }
   };
 
@@ -79,6 +125,14 @@ const Page = () => {
       password: "",
       phone: undefined,
       name: "",
+    },
+  });
+
+  const finishForm = useForm<z.infer<typeof phoneSchema>>({
+    resolver: zodResolver(phoneSchema),
+    defaultValues: {
+      phone: undefined,
+      password: "",
     },
   });
 
@@ -176,7 +230,7 @@ const Page = () => {
                             <FormLabel>Password</FormLabel>
                             <FormControl>
                               <Input
-                                placeholder="Enter Your Password"
+                                placeholder="Create Your Password"
                                 type="password"
                                 className="w-full"
                                 {...field}
@@ -211,7 +265,7 @@ const Page = () => {
                     </div>
 
                     <button
-                      className="w-full px-4 py-4 mb-4 font-semibold text-base text-gray-200 bg-orange-500 rounded dark:bg-orange-500 hover:text-orange-200 "
+                      className="w-full px-4 py-4 mb-4 font-semibold text-base text-white bg-orange-500 rounded dark:bg-orange-500 hover:text-orange-200 "
                       type="submit"
                     >
                       Create Account
@@ -267,6 +321,83 @@ const Page = () => {
           </div>
         </div>
       </section>
+      <Modal
+        open={open}
+        onClose={() => setOpen(false)}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <div className="w-full bg-white flex flex-col gap-6 relative p-2 ">
+            <div className="absolute rounded-full bg-[#F2F2F2] p-3 w-fit right-0 -top-2 ">
+              <img
+                src="/assets/icons/cross.svg"
+                alt="close"
+                className="cursor-pointer"
+                onClick={() => setOpen(false)}
+              />
+            </div>
+
+            <div className="text-center">
+              <span className="text-2xl font-medium text-orange-600 dark:text-orange-400">
+                Finish Your Signup
+              </span>
+            </div>
+
+            <Form {...finishForm}>
+              <form
+                onSubmit={finishForm.handleSubmit(finalSubmit)}
+                className="w-full"
+              >
+                <div className="w-full flex flex-col gap-3">
+                  <FormField
+                    control={finishForm.control}
+                    name="phone"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Phone</FormLabel>
+                        <FormControl>
+                          <Input
+                            placeholder="Enter Your Phone"
+                            type="number"
+                            {...field}
+                          />
+                        </FormControl>
+
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={finishForm.control}
+                    name="password"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Password</FormLabel>
+                        <FormControl>
+                          <Input
+                            placeholder="Create Your Password"
+                            type="password"
+                            className="w-full"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <button
+                    className="mt-2 px-1 py-2 mb-4 font-semibold text-base text-white bg-orange-500 rounded dark:bg-orange-500 hover:text-orange-200 "
+                    type="submit"
+                  >
+                    Submit
+                  </button>
+                </div>
+              </form>
+            </Form>
+          </div>
+        </Box>
+      </Modal>
     </>
   );
 };
