@@ -80,34 +80,36 @@ import { useRouter } from "next/navigation";
 import { Tooltip } from "@mui/material";
 import { ArrowDownIcon } from "@radix-ui/react-icons";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import toast from "react-hot-toast";
 
-const formSchema: any = z.object({
+const formSchema = z.object({
   name: z
     .string()
     .min(3, "Name must be atleast 3 characters long")
     .max(50, "Name must be less than 50 characters long"),
-  phone: z.number().refine(
+  phone: z.string().refine(
     (phoneNumber) => {
       const phonePattern = /^(\d{10}|\d{4}[-\s]?\d{3}[-\s]?\d{3})$/;
       return phonePattern.test(phoneNumber.toString());
     },
     {
-      message:
-        "Invalid phone number format. Use (123) 456-7890, 123-456-7890, or 123.456.7890",
+      message: "Please enter a valid phone number",
     }
   ),
   email: z.string().email("Invalid email address"),
   message: z.string().min(10, "Message must be atleast 10 characters long"),
-  city: z.string().min(3, "City must be atleast 3 characters long"),
-  service: z.string(),
+  // city: z.string().min(3, "City must be atleast 3 characters long"),
+  category: z.string().min(3, "Please select a category"),
 });
 
 const Header = () => {
   const router = useRouter();
   const [scrolling, setScrolling] = useState(false);
   const { user } = useAppSelector((state) => state.user);
+  const { address } = useAppSelector((state) => state.location);
   const [categories, setCategories] = useState([] as any);
   const pathname = usePathname();
+  const [loading, setLoading] = useState(false);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const [userDetails, setUserDetails] = useState(null as any);
@@ -160,11 +162,29 @@ const Header = () => {
       name: "",
       phone: undefined,
       email: "",
-      city: "",
       message: "",
-      service: "",
+      category: "",
     },
   });
+
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    const payload = { ...values, address };
+    try {
+      setLoading(true);
+      const { data } = await axios.post(
+        `${process.env.backendUrl}/contact/createContact`,
+        payload
+      );
+      console.log(data);
+      toast.success("Form Submitted Successfully, Will reach you soon");
+      setLoading(false);
+      form.reset();
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+      toast.error("Something went wrong");
+    }
+  }
 
   const getServices = async () => {
     try {
@@ -180,10 +200,6 @@ const Header = () => {
   useEffect(() => {
     getServices();
   }, []);
-
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-  }
 
   if (pathname === "/login" || pathname === "/signup") return null;
 
@@ -324,32 +340,42 @@ const Header = () => {
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-40">
               <DropdownMenuGroup>
-                <DropdownMenuItem>Home</DropdownMenuItem>
+                <Link href="/">
+                  <DropdownMenuItem>Home</DropdownMenuItem>
+                </Link>
+
                 <DropdownMenuSub>
                   <DropdownMenuSubTrigger>Services</DropdownMenuSubTrigger>
                   <DropdownMenuPortal>
-                    <DropdownMenuSubContent>
-                      <DropdownMenuItem>Relocation Services</DropdownMenuItem>
-                      <DropdownMenuItem>Painting Service</DropdownMenuItem>
-                      <DropdownMenuItem>Interior Design</DropdownMenuItem>
-                      <DropdownMenuItem>Sanitization Service</DropdownMenuItem>
-                      <DropdownMenuItem>Cleaning Services</DropdownMenuItem>
-                      <DropdownMenuItem>Pest Control</DropdownMenuItem>
-                      <DropdownMenuItem>Plumber Services</DropdownMenuItem>
-                      <DropdownMenuItem>Repair & Maintenance</DropdownMenuItem>
-                      <DropdownMenuItem>Car Rental & Taxi</DropdownMenuItem>
-                      <DropdownMenuItem>Event Management</DropdownMenuItem>
-                      <DropdownMenuItem>Photography</DropdownMenuItem>
-                      <DropdownMenuItem>Wedding Bridal Makeup</DropdownMenuItem>
+                    <DropdownMenuSubContent className="w-48">
+                      {categories?.map((category: any) => {
+                        return (
+                          <Link
+                            href={`/category/${category?._id}`}
+                            key={category?._id}
+                          >
+                            <DropdownMenuItem>
+                              {category?.name}
+                            </DropdownMenuItem>
+                          </Link>
+                        );
+                      })}
                     </DropdownMenuSubContent>
                   </DropdownMenuPortal>
                 </DropdownMenuSub>
-                <DropdownMenuItem>About</DropdownMenuItem>
-                <DropdownMenuItem>Blog</DropdownMenuItem>
-                <DropdownMenuItem>Contact</DropdownMenuItem>
+                <Link href="/about-us">
+                  <DropdownMenuItem>About</DropdownMenuItem>
+                </Link>
+                <Link href="/blogs">
+                  <DropdownMenuItem>Blog</DropdownMenuItem>
+                </Link>
+
                 <DropdownMenuItem>
-                  <Button className="w-full">Sign up</Button>
+                  <Button className="w-full">
+                    <Link href="/login">Login</Link>
+                  </Button>
                 </DropdownMenuItem>
+                <DropdownMenuItem></DropdownMenuItem>
                 <DropdownMenuItem>
                   <DialogTrigger asChild>
                     <Button variant="secondary" className="md:w-fit w-full">
@@ -419,38 +445,30 @@ const Header = () => {
                 />
                 <FormField
                   control={form.control}
-                  name="city"
+                  name="category"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>City*</FormLabel>
+                      <FormLabel>Category*</FormLabel>
                       <FormControl>
-                        <Select {...field}>
+                        <Select
+                          onValueChange={field.onChange}
+                          defaultValue={field.value}
+                          {...field}
+                        >
                           <SelectTrigger className="w-full">
-                            <SelectValue placeholder="Select your City" />
+                            <SelectValue placeholder="Select Category" />
                           </SelectTrigger>
                           <SelectContent>
-                            <SelectItem value="Delhi">Delhi</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </FormControl>
-
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="service"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Service*</FormLabel>
-                      <FormControl>
-                        <Select {...field}>
-                          <SelectTrigger className="w-full">
-                            <SelectValue placeholder="Select Service" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="Painting">Painting</SelectItem>
+                            {categories?.map((category: any) => {
+                              return (
+                                <SelectItem
+                                  value={category?._id}
+                                  key={category?._id}
+                                >
+                                  {category?.name}
+                                </SelectItem>
+                              );
+                            })}
                           </SelectContent>
                         </Select>
                       </FormControl>

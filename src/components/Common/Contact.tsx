@@ -166,30 +166,7 @@ const Contact = () => {
                   </FormItem>
                 )}
               />
-              {/* <FormField
-       control={form.control}
-       name="city"
-       render={({ field }) => (
-         <FormItem>
-           <FormLabel>City*</FormLabel>
-           <FormControl>
-             <Select onValueChange={field.onChange} defaultValue={field.value} {...field}>
-               <SelectTrigger className="w-full">
-                 <SelectValue placeholder="Select your City" />
-               </SelectTrigger>
-               <SelectContent>
-                 <SelectItem value="Delhi">Delhi</SelectItem>
-                 <SelectItem value="Mumbai">Mumbai</SelectItem>
-                 <SelectItem value="Gurgaon">Gurgaon</SelectItem>
-                 <SelectItem value="Noida">Noida</SelectItem>
-               </SelectContent>
-             </Select>
-           </FormControl> 
-           
-           <FormMessage />
-         </FormItem>
-       )}  
-     /> */}
+             
               <FormField
                 control={form.control}
                 name="category"

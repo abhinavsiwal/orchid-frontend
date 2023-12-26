@@ -217,7 +217,7 @@ const Page = () => {
       </section>
       ):(
         <div className="w-full h-full flex items-center justify-center">
-          <h6 className="text-2xl text-slate-400">No Services Found, Try Searching Again with Different Filters</h6>
+          <h6 className="text-lg text-center  md:text-2xl text-slate-400">No Services Found, Try Searching Again with Different Filters</h6>
         </div>
       )}
 
