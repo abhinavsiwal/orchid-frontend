@@ -15,10 +15,17 @@ import {
   SelectValue,
 } from "../ui/select";
 import { Button } from "../ui/button";
+import { useRouter } from "next/navigation";
+import parseGooglePlace from "parse-google-place";
 const Landing = () => {
   const { city } = useAppSelector((state) => state.location);
   const { categories } = useAppSelector((state) => state.categories);
+  const [category, setCategory] = useState("");
   const [address, setAddress] = useState(city);
+  const router = useRouter();
+  const handleSearch = () => {
+    router.push(`/search?city=${address}&category=${category}`);
+  };
 
   useEffect(() => {
     setAddress(city);
@@ -27,7 +34,8 @@ const Landing = () => {
   const handleSelect = async (selected: any) => {
     try {
       const results = await geocodeByAddress(selected);
-      setAddress(selected);
+      const addressComponents = parseGooglePlace(results[0]);
+      setAddress(addressComponents.city);
       console.log("Selected place:", results[0]);
     } catch (error) {
       console.error("Error selecting place:", error);
@@ -105,7 +113,7 @@ const Landing = () => {
           </div>
           <div className="w-full flex items-center gap-2 col-span-12 md:border-none border border-gray-400 p-1 px-2 md:p-2 rounded z-40 md:col-span-5 md:border-r md:border-r-primary">
             <StoreIcon className="text-primary" />
-            <Select value="">
+            <Select value={category} onValueChange={setCategory} >
               <SelectTrigger className="w-full bg-transparent outline-none border-none text-lg  text-secondary-foreground opacity-90 shadow-none focus:ring-0    ">
                 <SelectValue placeholder="Select Category" className="0" />
               </SelectTrigger>
@@ -120,7 +128,7 @@ const Landing = () => {
               </SelectContent>
             </Select>
           </div>
-          <Button className="col-span-12 md:col-span-2">Search</Button>
+          <Button className="col-span-12 md:col-span-2" onClick={handleSearch} >Search</Button>
         </div>
       </div>
     </div>
@@ -128,3 +136,4 @@ const Landing = () => {
 };
 
 export default Landing;
+

@@ -7,6 +7,7 @@ const nextConfig = {
             // Add more domains if needed
         ],
     },
+
     env: {
         backendUrl: "https://ill-pink-jay-gown.cyclic.app/api",
         // backendUrl: "http://localhost:9000/api",
