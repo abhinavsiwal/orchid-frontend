@@ -68,7 +68,7 @@ const Categories = ({ id }: any) => {
         >
           {categories?.map((category: any) => {
             return (
-              <Link href={`/category/${category?.slug}`}>
+              <Link href={`/category/${category?.slug}`  } key={category?._id} >
                 <SwiperSlide key={category?._id}>
                   <div className="w-full flex flex-col items-center gap-2  ">
                     <div className="hover-effect relative flex items-center justify-center w-full ">

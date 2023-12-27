@@ -120,7 +120,7 @@ const Footer = () => {
               <ul>
                 {categories?.slice(0, 3)?.map((category: any) => {
                   return (
-                    <li className="flex items-center mb-4 ">
+                    <li className="flex items-center mb-4 " key={category?._id} >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width={16}
