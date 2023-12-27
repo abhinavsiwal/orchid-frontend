@@ -2,10 +2,12 @@ import ImageGallery from "@/components/Service/ImageGallery";
 import MoreServices from "@/components/Service/MoreServices";
 import ServiceDetails from "@/components/Service/ServiceDetails";
 import Image from "next/image";
+import { Metadata, ResolvingMetadata } from "next";
+import { backendUrl } from "@/utils/axios";
 
 export async function generateStaticParams() {
   const data = await fetch(
-    `${process.env.backendUrl}/service/getAllServicesId`
+    `${backendUrl}/service/getAllServicesId`
   ).then((res) => res.json());
 
   return data?.services?.map((service: any) => ({
@@ -15,7 +17,7 @@ export async function generateStaticParams() {
 
 async function getSingleService(id: string) {
   const res = await fetch(
-    `${process.env.backendUrl}/service/getServiceBySlug/${id}`
+    `${backendUrl}/service/getServiceBySlug/${id}`
   );
 
   if (!res.ok) {
@@ -27,6 +29,34 @@ async function getSingleService(id: string) {
   return data.service;
 }
 
+export async function generateMetadata(
+  { params }: { params: { id: string } },
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  // read route params
+  const id = params.id;
+
+  // fetch data
+  const res = await fetch(
+    `${process.env.backendUrl}/service/getServiceBySlug/${id}`
+  );
+  if (!res.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error("Failed to fetch data");
+  }
+  const data = await res.json();
+  const service = data.service;
+
+  return {
+    title: service?.title,
+    description: service?.metaDescription,
+    // metadataBase: new URL(''),
+    // alternates:{
+    //   canonical:"/"
+    // }
+  };
+}
+
 export default async function Page({ params }: { params: { id: string } }) {
   const service = await getSingleService(params.id);
 
@@ -36,7 +66,6 @@ export default async function Page({ params }: { params: { id: string } }) {
         <div className="w-full grid-cols-1  grid sm:grid-cols-2 gap-12 items-start">
           <ImageGallery images={service?.images} />
           <ServiceDetails service={service} />
-        
         </div>
         <MoreServices category={service?.category?._id} id={service?._id} />
       </div>

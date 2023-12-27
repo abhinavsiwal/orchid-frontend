@@ -27,7 +27,7 @@ const MoreServices = async ({ category, id }: any) => {
           <h6 className="spartan text-lg md:text-xl text-blue uppercase tracking-widest font-medium">
             Services
           </h6>
-          <h4 className="font-bold text-3xl md:text-4xl text-primary md:text-start text-center inter tracking-wide text-primary ">
+          <h4 className="font-bold text-3xl md:text-4xl text-primary md:text-start text-center inter tracking-wide ">
             Similar Sevices
           </h4>
         </div>
