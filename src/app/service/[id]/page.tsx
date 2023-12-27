@@ -9,13 +9,13 @@ export async function generateStaticParams() {
   ).then((res) => res.json());
 
   return data?.services?.map((service: any) => ({
-    id: service._id,
+    id: service?.slug,
   }));
 }
 
 async function getSingleService(id: string) {
   const res = await fetch(
-    `${process.env.backendUrl}/service/getServiceById/${id}`
+    `${process.env.backendUrl}/service/getServiceBySlug/${id}`
   );
 
   if (!res.ok) {

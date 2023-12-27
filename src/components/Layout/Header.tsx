@@ -250,7 +250,7 @@ const Header = () => {
                     {categories?.map((category: any) => {
                       return (
                         <Link
-                          href={`/category/${category?._id}`}
+                          href={`/category/${category?.slug}`}
                           key={category?._id}
                         >
                           <p
@@ -345,13 +345,13 @@ const Header = () => {
                 </Link>
 
                 <DropdownMenuSub>
-                  <DropdownMenuSubTrigger>Services</DropdownMenuSubTrigger>
+                  <DropdownMenuSubTrigger>Categories</DropdownMenuSubTrigger>
                   <DropdownMenuPortal>
                     <DropdownMenuSubContent className="w-48">
                       {categories?.map((category: any) => {
                         return (
                           <Link
-                            href={`/category/${category?._id}`}
+                            href={`/category/${category?.slug}`}
                             key={category?._id}
                           >
                             <DropdownMenuItem>

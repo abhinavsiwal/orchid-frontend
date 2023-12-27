@@ -12,7 +12,7 @@ const Footer = () => {
   if (pathname === "/login" || pathname === "/signup") return null;
 
   return (
-    <section className="flex flex-col h-screen lg:justify-end font-poppins">
+    <section className="flex flex-col lg:justify-end font-poppins">
       <div className="w-full bg-orange-900 pt-11 dark:bg-gray-900 ">
         <div className="justify-center flex-1 max-w-6xl px-4 py-4 mx-auto lg:py-0">
           <div className="flex flex-wrap items-center justify-between pb-4 border-b border-gray-500 dark:border-gray-700 lg:justify-between">

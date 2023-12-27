@@ -7,6 +7,7 @@ import Image from "next/image";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { useAppSelector } from "@/store/redux-hooks";
+import Link from "next/link";
 
 const Categories = ({ id }: any) => {
   const [swiperInstance, setSwiperInstance] = useState(null as any);
@@ -18,7 +19,7 @@ const Categories = ({ id }: any) => {
   useEffect(() => {
     if (allCategories) {
       const filteredCategories = allCategories.filter(
-        (category: any) => category?._id !== id
+        (category: any) => category?.slug !== id
       );
       setCategories(filteredCategories);
     }
@@ -67,23 +68,25 @@ const Categories = ({ id }: any) => {
         >
           {categories?.map((category: any) => {
             return (
-              <SwiperSlide key={category?._id}>
-                <div className="w-full flex flex-col items-center gap-2  ">
-                  <div className="hover-effect relative flex items-center justify-center w-full ">
-                    <Image
-                      src={category?.image}
-                      width={600}
-                      height={600}
-                      alt={category?.name}
-                      className="rounded-3xl cursor-pointer   "
-                    />
-                  </div>
+              <Link href={`/category/${category?.slug}`}>
+                <SwiperSlide key={category?._id}>
+                  <div className="w-full flex flex-col items-center gap-2  ">
+                    <div className="hover-effect relative flex items-center justify-center w-full ">
+                      <Image
+                        src={category?.image}
+                        width={600}
+                        height={600}
+                        alt={category?.name}
+                        className="rounded-3xl cursor-pointer   "
+                      />
+                    </div>
 
-                  <p className="text-center text-white font-semibold text-lg inter">
-                    {category?.name}
-                  </p>
-                </div>
-              </SwiperSlide>
+                    <p className="text-center text-white font-semibold text-lg inter">
+                      {category?.name}
+                    </p>
+                  </div>
+                </SwiperSlide>
+              </Link>
             );
           })}
         </Swiper>

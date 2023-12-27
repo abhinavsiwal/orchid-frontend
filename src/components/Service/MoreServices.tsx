@@ -76,7 +76,7 @@ const MoreServices = async ({ category, id }: any) => {
                     </p>
                     <div className="group inline-flex rounded-xl bg-orange-100 p-2 px-3 hover:bg-orange-200">
                       <Link
-                        href={`/service/${service?._id}`}
+                        href={`/service/${service?.slug}`}
                         className="text-primary text-sm inter "
                       >
                         View

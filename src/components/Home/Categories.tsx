@@ -58,7 +58,7 @@ const Categories = () => {
           {categories?.map((category) => {
             return (
               <SwiperSlide key={category?._id} >
-                <Link href={`/category/${category?._id}`} >
+                <Link href={`/category/${category?.slug}`} >
 
               <div className="w-full flex flex-col items-center gap-2  ">
                 <div className="hover-effect relative flex items-center justify-center w-full ">

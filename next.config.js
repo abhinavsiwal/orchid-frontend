@@ -9,8 +9,8 @@ const nextConfig = {
     },
 
     env: {
-        backendUrl: "https://ill-pink-jay-gown.cyclic.app/api",
-        // backendUrl: "http://localhost:9000/api",
+        // backendUrl: "https://ill-pink-jay-gown.cyclic.app/api",
+        backendUrl: "http://localhost:9000/api",
     },
 };
 
