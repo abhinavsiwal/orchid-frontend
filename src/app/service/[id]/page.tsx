@@ -6,9 +6,9 @@ import { Metadata, ResolvingMetadata } from "next";
 import { backendUrl } from "@/utils/axios";
 
 export async function generateStaticParams() {
-  const data = await fetch(
-    `${backendUrl}/service/getAllServicesId`
-  ).then((res) => res.json());
+  const data = await fetch(`${backendUrl}/service/getAllServicesId`).then(
+    (res) => res.json()
+  );
 
   return data?.services?.map((service: any) => ({
     id: service?.slug,
@@ -16,9 +16,7 @@ export async function generateStaticParams() {
 }
 
 async function getSingleService(id: string) {
-  const res = await fetch(
-    `${backendUrl}/service/getServiceBySlug/${id}`
-  );
+  const res = await fetch(`${backendUrl}/service/getServiceBySlug/${id}`);
 
   if (!res.ok) {
     // This will activate the closest `error.js` Error Boundary
@@ -60,6 +58,8 @@ export async function generateMetadata(
 export default async function Page({ params }: { params: { id: string } }) {
   const service = await getSingleService(params.id);
 
+  console.log(service);
+
   return (
     <div className="w-full flex flex-col gap-16 md:py-8 ">
       <div className="w-full px-8 mt-20 sm:px-12 md:px-20 lg:px-32 py-16 flex flex-col gap-12 md:gap-20">
@@ -67,7 +67,9 @@ export default async function Page({ params }: { params: { id: string } }) {
           <ImageGallery images={service?.images} />
           <ServiceDetails service={service} />
         </div>
-        <MoreServices category={service?.category?._id} id={service?._id} />
+        {service?.category?.slug && (
+          <MoreServices category={service?.category?.slug} id={service?._id} />
+        )}
       </div>
     </div>
   );

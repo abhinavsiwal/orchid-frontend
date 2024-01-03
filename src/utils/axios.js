@@ -1,8 +1,9 @@
 import axios from "axios";
 
-// export const backendUrl = "http://localhost:9000/api";
-export const backendUrl = "https://ill-pink-jay-gown.cyclic.app/api";
+export const backendUrl = "http://localhost:9000/api";
+// export const backendUrl = "https://ill-pink-jay-gown.cyclic.app/api";
 // export const backendUrl = "";
+export const frontendUrl = "http://localhost:3000";
 
 export const callAxios = async (method, route, body) => {
   const token = localStorage.getItem("token");

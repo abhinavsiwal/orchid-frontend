@@ -1,0 +1,24 @@
+# robots.txt generated for your website
+
+# Allow all bots to access everything
+User-agent: *
+Disallow:
+
+# Prevent all bots from accessing a specific folder
+# User-agent: *
+# Disallow: /private-folder/
+
+# Prevent a specific bot from accessing your site
+# User-agent: BadBot # Replace 'BadBot' with the actual user agent of the bot
+# Disallow: /
+
+# Allow only specific bots
+# User-agent: Googlebot # Allow Google
+# Disallow:
+# User-agent: Bingbot # Allow Bing
+# Disallow:
+# User-agent: * # Disallow all others
+# Disallow: /
+
+# Sitemap location
+Sitemap: http://www.yoursite.com/sitemap.xml
