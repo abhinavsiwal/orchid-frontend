@@ -37,10 +37,8 @@ const style = {
 };
 
 const formSchema = z.object({
-  address: z
-    .string()
-    .min(3, "Address must be atleast 3 characters long"),
-  
+  address: z.string().min(3, "Address must be atleast 3 characters long"),
+
   city: z.string().min(3, "City must be atleast 3 characters long"),
   pinCode: z.string().min(6, "Pincode must be atleast 6 characters long"),
   state: z

@@ -4,6 +4,7 @@ import ServiceDetails from "@/components/Service/ServiceDetails";
 import Image from "next/image";
 import { Metadata, ResolvingMetadata } from "next";
 import { backendUrl } from "@/utils/axios";
+import Reviews from "@/components/Service/Reviews";
 
 export async function generateStaticParams() {
   const data = await fetch(`${backendUrl}/service/getAllServicesId`).then(
@@ -67,6 +68,7 @@ export default async function Page({ params }: { params: { id: string } }) {
           <ImageGallery images={service?.images} />
           <ServiceDetails service={service} />
         </div>
+        <Reviews service={service}  />
         {service?.category?.slug && (
           <MoreServices category={service?.category?.slug} id={service?._id} />
         )}

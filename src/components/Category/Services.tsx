@@ -52,7 +52,7 @@ const Services = ({ id }: any) => {
     if (id) {
       getServices();
     }
-  }, [id]);
+  }, [id,page]);
 
   return (
     <>
