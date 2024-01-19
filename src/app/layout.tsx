@@ -1,4 +1,3 @@
-
 import Header from "@/components/Layout/Header";
 import "./globals.css";
 import type { Metadata } from "next";
@@ -7,9 +6,8 @@ import ReduxProvider from "./ReduxProvider";
 import Footer from "@/components/Layout/Footer";
 import { Suspense } from "react";
 import Loading from "./loading";
-import NextTopLoader from 'nextjs-toploader';
-
-
+import NextTopLoader from "nextjs-toploader";
+import Widgets from "@/components/Layout/Widgets";
 
 export default function RootLayout({
   children,
@@ -18,9 +16,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1Cz13aBYAbBYJL0oABZ8KZnd7imiWwA4&libraries=places" async> </script>
+      <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1Cz13aBYAbBYJL0oABZ8KZnd7imiWwA4&libraries=places"
+        async
+      >
+        {" "}
+      </script>
       <body className="w-full">
-      {/* <NextTopLoader 
+        {/* <NextTopLoader 
         color="#f97215"
         showSpinner={false}
         speed={1000}
@@ -30,6 +33,7 @@ export default function RootLayout({
           <Header />
           <Suspense fallback={<Loading />} />
           {children}
+          <Widgets />
           <Footer />
         </ReduxProvider>
       </body>
