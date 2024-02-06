@@ -9,7 +9,7 @@ const Choose = () => {
       <div className="bg-primary rounded-3xl p-6 sm:p-12 grid grid-cols-1 md:grid-cols-2  ">
         <div className="flex flex-col  md:items-start items-center gap-4 ">
           <h6 className="spartan text-lg md:text-xl text-blue uppercase tracking-widest font-medium">
-            Blogs
+            Orchid Company
           </h6>
           <h4 className="font-bold text-3xl md:text-4xl text-white inter tracking-wide ">
             Why Choose Us
