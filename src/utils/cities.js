@@ -120,3 +120,18 @@ export const cities = [
   "Rohtak",
   "Korba",
 ];
+
+
+export const MAJORCITIES  = [
+  "Banglore",
+  "Mumbai",
+  "Chennai",
+  "Pune",
+  "Hyderabad",
+  "Gurgaon",
+  "Delhi",
+  "Noida",
+  "Greater Noida",
+  "Ghaziabad",
+  "Faridabad",
+];
