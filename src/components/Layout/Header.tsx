@@ -99,6 +99,7 @@ const style = {
   // p: 4,
 };
 
+
 const formSchema = z.object({
   name: z
     .string()
@@ -237,7 +238,7 @@ const Header = () => {
       console.log(data);
 
       if (data.subCategories.length <= 0) {
-      return  toast.error("No Cities Found for this Category");
+        return toast.error("No Cities Found for this Category");
       }
 
       setCubCategories(data.subCategories);
@@ -326,16 +327,16 @@ const Header = () => {
 
           <Contact />
           {userDetails ? (
-            <NavigationMenu>
-              <NavigationMenuList>
+            <NavigationMenu className="list-none" >
+              <NavigationMenuList className="list-none" >
                 <NavigationMenuItem>
                   <NavigationMenuTrigger
-                    className={` w-full flex flex-col gap-1 ${
+                    className={` w-full list-none flex flex-col gap-1 ${
                       scrolling ? "text-foreground opacity-60" : "text-white"
                     }  spartan font-medium  text-sm cursor-pointer bg-transparent`}
                   >
-                    <p className="">Hi,{userDetails?.name}</p>
-                    <p className="">{userDetails?.email}</p>
+                    <p className="list-none">Hi,{userDetails?.name}</p>
+                    <p className="list-none">{userDetails?.email}</p>
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <NavigationMenuLink>
@@ -387,14 +388,17 @@ const Header = () => {
                       <DropdownMenuSubContent className="w-48">
                         {categories?.map((category: any) => {
                           return (
-                            <Link
-                              href={`/category/${category?._id}`}
+                            <div
+                              onClick={() => {
+                                getSubCategories(category?._id);
+                              }}
                               key={category?._id}
+
                             >
                               <DropdownMenuItem>
                                 {category?.name}
                               </DropdownMenuItem>
-                            </Link>
+                            </div>
                           );
                         })}
                       </DropdownMenuSubContent>
@@ -546,9 +550,31 @@ const Header = () => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
+        <Box sx={{
+           position: "absolute" as "absolute",
+           top: "50%",
+           left: "50%",
+           transform: "translate(-50%, -50%)",
+           width: 600,
+           bgcolor: "white",
+           borderRadius: "12px",
+           border: "1px solid #fff",
+           p: 2,
+
+           "@media (max-width: 640px)": {
+            width: 340,
+            p: 1,
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            bgcolor: "white",
+            borderRadius: "12px",
+            border: "1px solid #fff",
+           },
+
+        }} >
           <div className="w-full bg-white flex flex-col gap-4 relative p-2 ">
-            <div className="absolute rounded-full bg-[#F2F2F2] p-3 w-fit right-0 -top-2 ">
+            <div className="absolute rounded-full bg-[#F2F2F2] p-2 md:p-3 w-fit right-0 -top-2 ">
               <img
                 src="/assets/icons/cross.svg"
                 alt="close"
@@ -557,17 +583,17 @@ const Header = () => {
               />
             </div>
             <div className="text-center">
-              <span className="text-xl font-medium text-orange-600 dark:text-orange-400">
+              <span className="text-lg md:text-xl font-medium text-orange-600 dark:text-orange-400">
                 Select Your City
               </span>
             </div>
-            <div className="w-full grid grid-cols-3 gap-4">
+            <div className="w-full grid grid-cols-2 md:grid-cols-3 gap-4">
               {subCategories.map((subCategory: any) => {
                 return (
                   <Link
                     href={`/${subCategory?.slug}`}
                     onClick={() => setOpen(false)}
-                    className="w-full flex items-center justify-center hover:bg-primary hover:text-white cursor-pointer whitespace-nowrap border border-primary rounded-full p-2 spartan text-primary"
+                    className="w-full flex items-center justify-center hover:bg-primary hover:text-white cursor-pointer whitespace-nowrap border border-primary rounded-full text-sm md:text-md p-1 md:p-2 spartan text-primary"
                   >
                     {subCategory?.city}
                   </Link>
