@@ -8,15 +8,12 @@ import toast from "react-hot-toast";
 import { useAppSelector } from "@/store/redux-hooks";
 import BookingModal from "../Common/BookingModal";
 
-
 const ServiceDetails = ({ service }: any) => {
   const router = useRouter();
   const [open, setOpen] = useState(false);
 
-
   const { user } = useAppSelector((state) => state.user);
 
- 
   return (
     <>
       <div className="w-full">
@@ -64,9 +61,10 @@ const ServiceDetails = ({ service }: any) => {
             <div className="bg-gray-100 dark:bg-gray-700 rounded-xl">
               <div className="p-3 lg:p-5 ">
                 <div className="p-2 rounded-xl lg:p-6 dark:bg-gray-800 bg-gray-50">
-                  <p className="text-base text-gray-600 dark:text-gray-400">
-                    {service?.description}
-                  </p>
+                  <p
+                    className="text-base text-gray-600 dark:text-gray-400"
+                    dangerouslySetInnerHTML={{ __html: service?.description }}
+                  ></p>
                 </div>
               </div>
             </div>
@@ -98,7 +96,7 @@ const ServiceDetails = ({ service }: any) => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-       <BookingModal service={service} />
+        <BookingModal service={service} />
       </Modal>
     </>
   );

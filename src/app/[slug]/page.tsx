@@ -3,8 +3,9 @@ import { backendUrl } from "@/utils/axios";
 import { Metadata, ResolvingMetadata } from "next";
 import Link from "next/link";
 import Choose from "@/components/Home/Choose";
-import parse from 'html-react-parser';
+import parse from "html-react-parser";
 import Services from "@/components/Category/Services";
+import Faqs from "@/components/Common/Faqs";
 
 
 export async function generateStaticParams() {
@@ -131,15 +132,15 @@ export default async function Page({ params }: { params: { slug: string } }) {
           </h6>
           <div
             className="p-4  flex flex-col gap-2 mb-2 bg-white text-sm inter"
-           
-              // style={{
-              //   listStyle:"auto"
-              // }}
 
+            // style={{
+            //   listStyle:"auto"
+            // }}
           >
             {parse(category?.description)}
           </div>
         </div>
+      <Faqs faqs={category?.faqs} />
       </div>
     </>
   );

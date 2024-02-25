@@ -59,7 +59,7 @@ const Services = ({ id }: any) => {
                 key={service?._id}
                 className="grid grid-cols-1 mb-6 md:grid-cols-[40%,1fr] border-gray-200 rounded-md border dark:border-gray-800  gap-2"
               >
-                <div>
+                <div className="w-full h-80" >
                   <Image
                     src={service?.images[0] || ""}
                     alt={service?.name}
@@ -77,8 +77,8 @@ const Services = ({ id }: any) => {
                     {service?.name}
                   </h2>
 
-                  <p className="text-sm list-disc w-2/3 text-gray-500 dark:text-gray-400 ">
-                    {service?.description.substring(0, 300) + "..."}
+                  <p className="text-sm list-disc w-2/3 text-gray-500 dark:text-gray-400 " dangerouslySetInnerHTML={{__html:service?.description.substring(0, 300) + "..."}} >
+                    {/* {service?.description.substring(0, 300) + "..."} */}
                   </p>
 
                   <div className="flex py-4 w-full justify-between ">

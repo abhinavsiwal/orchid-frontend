@@ -113,7 +113,7 @@ const Reviews = ({ reviews, service }: any) => {
 
   return (
     <>
-      <div className="flex items-center pt-2 bg-stone-50 xl:h-screen font-poppins dark:bg-gray-800 ">
+      <div className="flex items-center pt-2 bg-stone-50 h-full font-poppins dark:bg-gray-800 ">
         <div className="justify-center flex-1 px-4 py-2 mx-auto max-w-7xl lg:py-2 md:px-6">
           <div className="w-full my-4 flex justify-between items-center">
             <h2 className=" text-xl font-semibold text-left font-gray-600 dark:text-gray-400">
