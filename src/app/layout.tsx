@@ -18,7 +18,7 @@ export default function RootLayout({
     <html lang="en">
       <Script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1Cz13aBYAbBYJL0oABZ8KZnd7imiWwA4&libraries=places"
-       
+       async={true}
       />
       
       <body className="w-full">
