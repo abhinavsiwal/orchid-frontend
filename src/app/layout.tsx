@@ -8,7 +8,7 @@ import { Suspense } from "react";
 import Loading from "./loading";
 import NextTopLoader from "nextjs-toploader";
 import Widgets from "@/components/Layout/Widgets";
-
+import Script from 'next/script'
 export default function RootLayout({
   children,
 }: {
@@ -16,12 +16,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <script
+      <Script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1Cz13aBYAbBYJL0oABZ8KZnd7imiWwA4&libraries=places"
-        async
-      >
-        {" "}
-      </script>
+       
+      />
+      
       <body className="w-full">
         {/* <NextTopLoader 
         color="#f97215"
