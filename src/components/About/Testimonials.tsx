@@ -10,8 +10,7 @@ const Testimonials = () => {
           Testimonials{" "}
         </h1>
         <p className="max-w-xl mx-auto text-gray-500">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste quae quam
-          nostrum harum non in at eaque quibusdam eum ratione.
+        Discover the experiences that keep our community thriving. Our members share their journeys, celebrating the transformations and successes they've achieved with us. It's not just about the goals they've reached, it's about the confidence they've gained and the lifelong habits they've formed. Here's what they have to say.
         </p>
       </div>
       <div className="flex ">

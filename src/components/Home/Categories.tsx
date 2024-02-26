@@ -1,5 +1,4 @@
-
-'use client'
+"use client";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -26,9 +25,8 @@ const Categories = () => {
           </h4>
         </div>
         <p className="text-gray-400 inter break-words md:text-start text-center  text-md md:text-lg font-light ">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do usmod{" "}
-          <br />
-          tempor incididunt ut labore et dolore magna aliqua.
+          We're here to give you a smooth, hassle-free experience with a variety
+          of facility services.
         </p>
       </div>
       <div className="w-full">
@@ -57,30 +55,27 @@ const Categories = () => {
         >
           {categories?.map((category) => {
             return (
-              <SwiperSlide key={category?._id} >
-                <Link href={`/category/${category?.slug}`} >
+              <SwiperSlide key={category?._id}>
+                <Link href={`/category/${category?.slug}`}>
+                  <div className="w-full flex flex-col items-center gap-2  ">
+                    <div className="hover-effect relative flex items-center justify-center w-full ">
+                      <Image
+                        src={category?.image}
+                        width={600}
+                        height={600}
+                        alt={category?.name}
+                        className="rounded-3xl cursor-pointer   "
+                      />
+                    </div>
 
-              <div className="w-full flex flex-col items-center gap-2  ">
-                <div className="hover-effect relative flex items-center justify-center w-full ">
-                  <Image
-                    src={category?.image}
-                    width={600}
-                    height={600}
-                    alt={category?.name}
-                    className="rounded-3xl cursor-pointer   "
-                  />
-                </div>
-  
-                <p className="text-center text-blue font-semibold text-lg inter">
-                {category?.name}
-                </p>
-              </div>
-              </Link>
-            </SwiperSlide>
-           
-            )
+                    <p className="text-center text-blue font-semibold text-lg inter">
+                      {category?.name}
+                    </p>
+                  </div>
+                </Link>
+              </SwiperSlide>
+            );
           })}
-        
         </Swiper>
       </div>
       <div className="w-full flex justify-center gap-4">

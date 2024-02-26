@@ -13,10 +13,7 @@ const Stats = () => {
           Trusted by thousands of people all over the world
         </div>
         <p className="text-white inter font-medium">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officiis
-          suscipit explicabo voluptate, iusto qui officia. Provident, accusamus.
-          Eos eum perspiciatis architecto. Excepturi unde aspernatur ab
-          voluptatum repudiandae dolor itaque veniam!z
+        Your trust is our commitment. We strive to deliver exceptional service, reaching out with our expert providers to fulfill diverse needs across various sectors. Our ever-expanding customer base is a testament to the reliability and quality we bring to every job. With a growing list of categories, we empower connections and foster opportunities that drive real-world results
         </p>
       </div>
       <div className="grid grid-cols-2 gap-8 w-full ">

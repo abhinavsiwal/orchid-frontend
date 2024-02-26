@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image'
 
 const About = () => {
   return (
@@ -19,10 +20,14 @@ const About = () => {
       </div>
       <div className="flex flex-wrap ">
         <div className="w-full px-4 mb-10 lg:w-1/2 lg:mb-0">
-          <img
+          <Image
             src="https://i.postimg.cc/j5L5bX2d/pexels-andrea-piacquadio-3757946.jpg"
-            alt=""
+            alt="About us"
+            width={600}
+            height={400}
             className="relative z-40 object-cover w-full h-96"
+        
+
           />
         </div>
         <div className="w-full px-4 mb-10 lg:w-1/2 lg:mb-0 ">
@@ -30,11 +35,10 @@ const About = () => {
             We are providing a better facility
           </h2>
           <p className="mb-4 text-base leading-7 text-gray-500 dark:text-gray-400">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-            minim veniam
+          Welcome to Orchid Company. We're an online marketplace for all your service needs. Need home repairs? Beauty treatments? Even a rental car? We're here for you. With a few clicks, find top-tier service providers in your area. <br />
+          Established in 2020, we­ are Orchid Company, your go-to online hub that links you with affordable se­rvice providers. We unde­rstand that it's no easy task to find dependable­ services in this eve­r-evolving and competitive world. <br /> That's why we­ have taken the initiative­ to create a community of teste­d and trustworthy experts, all set to give­ you pleasing results.
           </p>
-          <ul className="mb-10">
+          {/* <ul className="mb-10">
             <li className="flex items-center mb-4 text-base text-gray-600 dark:text-gray-400">
               <span className="mr-3 text-orange-500 dark:text-orange-400 ">
                 <svg
@@ -80,13 +84,13 @@ const About = () => {
               </span>
               Iron man ipsum dolor sit amet, consectetur adipiscing
             </li>
-          </ul>
-          <a
+          </ul> */}
+          {/* <a
             href="#"
             className="px-4 py-3 text-orange-700 transition-all transform border border-orange-500 hover:bg-orange-600 dark:border-orange-400 dark:hover:bg-orange-500 dark:hover:text-gray-100 dark:hover:border-orange-500 dark:text-orange-400 hover:text-gray-100"
           >
             Discover more
-          </a>
+          </a> */}
         </div>
       </div>
     </div>

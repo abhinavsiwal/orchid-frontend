@@ -1,6 +1,6 @@
 import React from "react";
 import GroupIcon from "@mui/icons-material/Group";
-import SettingsAccessibilityIcon from '@mui/icons-material/SettingsAccessibility';
+import SettingsAccessibilityIcon from "@mui/icons-material/SettingsAccessibility";
 import QueryStatsIcon from "@mui/icons-material/QueryStats";
 import Image from "next/image";
 const Choose = () => {
@@ -15,9 +15,8 @@ const Choose = () => {
             Why Choose Us
           </h4>
           <p className="text-white md:text-start text-center inter break-words text-lg font-light ">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            usmod <br />
-            tempor incididunt ut labore et dolore magna aliqua.
+            Orchid Company respects your time, budget, and happiness. <br />
+            For that reason, we provide these advantages when you select us:
           </p>
           <div className="w-full flex flex-col gap-8 pt-8">
             <div className="flex w-full gap-6 ">
@@ -26,10 +25,10 @@ const Choose = () => {
               </div>
               <div className="flex flex-col gap-2">
                 <h6 className="text-blue font-semibold text-lg inter">
-                  Meet New Customers
+                Trustworthy Quality
                 </h6>
                 <p className="text-white inter font-medium ">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                We partner with authenticated and reliable experts. They have the knowledge and skill to ensure dependable service for your demands.
                 </p>
               </div>
             </div>
@@ -39,10 +38,10 @@ const Choose = () => {
               </div>
               <div className="flex flex-col gap-2">
                 <h6 className="text-blue font-semibold text-lg inter">
-                  Meet New Customers
+                Fair Cost
                 </h6>
                 <p className="text-white inter font-medium ">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                All our services carry competitive, clear prices. No surprise costs or additional fees.
                 </p>
               </div>
             </div>
@@ -52,10 +51,10 @@ const Choose = () => {
               </div>
               <div className="flex flex-col gap-2">
                 <h6 className="text-blue font-semibold text-lg inter">
-                  Meet New Customers
+                Happiness Promise
                 </h6>
                 <p className="text-white inter font-medium ">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                We want you 100% pleased with our work. If not, we'll redo it for no charge until you're content.
                 </p>
               </div>
             </div>

@@ -13,10 +13,8 @@ const RecentBlogs = () => {
             Recent Blogs
           </h4>
         </div>
-        <p className="text-gray-400 inter break-words text-lg font-light md:text-start text-center ">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do usmod{" "}
-          <br />
-          tempor incididunt ut labore et dolore magna aliqua.
+        <p className="text-gray-400 inter break-words text-lg font-light md:text-start text-center w-2/3 ">
+        Stay updated with our latest insights and stories. <br /> Our blog section brings you a fresh perspective on everyday challenges, offering tips, industry news, and in-depth articles to enrich your knowledge.
         </p>
       </div>
       <div className="grid md:grid-cols-3 gap-6">
