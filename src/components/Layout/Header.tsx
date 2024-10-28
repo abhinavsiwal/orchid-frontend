@@ -193,7 +193,7 @@ const Header = () => {
     try {
       setLoading(true);
       const { data } = await axios.post(
-        `${process.env.backendUrl}/contact/createContact`,
+        `${backendUrl}/contact/createContact`,
         payload
       );
       console.log(data);

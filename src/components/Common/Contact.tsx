@@ -38,6 +38,7 @@ import axios from "axios";
 import Loading from "react-fullscreen-loading";
 import toast from "react-hot-toast";
 import CircularProgress from "@mui/material/CircularProgress";
+import { backendUrl } from "@/utils/axios";
 
 
 const formSchema = z.object({
@@ -82,7 +83,7 @@ const Contact = () => {
     try {
       setLoading(true);
       const { data } = await axios.post(
-        `${process.env.backendUrl}/contact/createContact`,
+        `${backendUrl}/contact/createContact`,
         payload
       );
       console.log(data);

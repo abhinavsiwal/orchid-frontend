@@ -77,10 +77,10 @@
 
 
 .spartan {
-  font-family: "League Spartan", sans-serif;
+  font-family: "League Spartan", sans-serif !important;
 }
 .inter {
-  font-family: "Inter", sans-serif;
+  font-family: "Inter", sans-serif !important;
 }
 
 .zoom-image {

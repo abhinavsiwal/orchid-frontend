@@ -131,7 +131,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
             Description
           </h6>
           <div
-            className="p-4  flex flex-col gap-2 mb-2 bg-white text-sm inter"
+            className="p-4  flex flex-col mb-2 bg-white text-sm inter"
 
             // style={{
             //   listStyle:"auto"

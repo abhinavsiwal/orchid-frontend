@@ -38,7 +38,7 @@ export async function generateMetadata(
 
   // fetch data
   const res = await fetch(
-    `${process.env.backendUrl}/service/getServiceBySlug/${id}`
+    `${backendUrl}/service/getServiceBySlug/${id}`
   );
   if (!res.ok) {
     // This will activate the closest `error.js` Error Boundary
@@ -69,7 +69,7 @@ export default async function Page({ params }: { params: { id: string } }) {
           <ImageGallery images={service?.images} />
           <ServiceDetails service={service} />
         </div>
-        <Reviews service={service}  />
+        <Reviews service={service} />
         {service?.category?.slug && (
           <MoreServices category={service?.category?.slug} id={service?._id} />
         )}

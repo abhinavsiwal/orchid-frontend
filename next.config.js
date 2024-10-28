@@ -4,7 +4,8 @@ const nextConfig = {
         domains: [
             "applore-dev-projects-1.s3.amazonaws.com",
             "applore-dev-projects-1.s3.ap-south-1.amazonaws.com",
-            "i.postimg.cc"
+            "i.postimg.cc",
+            "localhost",
             // Add more domains if needed
         ],
     },

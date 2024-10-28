@@ -22,7 +22,7 @@ export default function Home() {
         console.log(latitude, longitude);
 
       
-        const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=AIzaSyC1Cz13aBYAbBYJL0oABZ8KZnd7imiWwA4`;
+        const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=AIzaSyDMyIGtfzovrbF-SOO9mcV3n5Xgw9kmwvI`;
         axios.get(url).then((res) => {
           console.log(res.data.results[0]);
           

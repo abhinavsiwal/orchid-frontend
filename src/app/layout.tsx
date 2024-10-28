@@ -13,13 +13,13 @@ export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
-}) {
+}) {''
   return (
     <html lang="en">
       <Script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1Cz13aBYAbBYJL0oABZ8KZnd7imiWwA4&libraries=places"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMyIGtfzovrbF-SOO9mcV3n5Xgw9kmwvI&libraries=places"
        async={true}
-       strategy="beforeInteractive"
+      //  strategy="beforeInteractive"
        
       />
       
