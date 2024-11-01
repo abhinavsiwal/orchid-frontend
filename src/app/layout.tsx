@@ -36,7 +36,13 @@ export default function RootLayout({
           href="/favicon-16x16.png"
         />
         <link rel="manifest" href="/site.webmanifest" />
-        <title>Orchid Company</title>
+        <title>
+          Orchid Company – Professional Home Services at Your Doorstep
+        </title>
+        <meta
+          name="description"
+          content="Orchid Company connects you with skilled professionals for all your home service needs. From cleaning to repairs, find reliable experts nearby to enhance your living space with ease and quality."
+        />
       </head>
       <Script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMyIGtfzovrbF-SOO9mcV3n5Xgw9kmwvI&libraries=places"
