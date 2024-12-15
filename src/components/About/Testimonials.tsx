@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import React from 'react'
 
 const Testimonials = () => {
@@ -28,24 +29,23 @@ const Testimonials = () => {
               <div className="text-center">
                 <div className="relative inline-block w-32 h-32 mb-10 text-xs text-white rounded">
                   <div className="absolute w-24 h-24 border-t-4 border-r-4 border-orange-400 -top-4 -right-4"></div>
-                  <img
+                  <Image
                     className="object-cover w-full h-full"
-                    src="https://i.postimg.cc/wj9DLCJj/yunming-wang-G9f4-Enb8-XVM-unsplash.jpg"
+                    src="/assets/images/piyush.jpeg"
                     alt=""
+                    width={400}
+                    height={400}
                   />
                   <div className="absolute w-24 h-24 border-b-4 border-l-4 border-orange-400 -bottom-4 -left-4"></div>
                 </div>
               </div>
               <p className="mb-4 text-base leading-7 text-gray-400">
-                Keep on jumping to get the most of the jump rope exercise. It will
-                help you to increase your bone density as well
+              Orchid Company truly delivers what they promise! I needed quick home maintenance services, and they provided a skilled professional in no time. The process was seamless, and the pricing was fair. I highly recommend them to anyone looking for hassle-free, high-quality service!
               </p>
               <h2 className="text-lg font-bold leading-9 text-black dark:text-white">
-                Allyson Smith
+                Piyush Jain
               </h2>
-              <span className="block text-xs font-semibold text-orange-500 uppercase dark:text-orange-300">
-                Chief Editor
-              </span>
+             
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
@@ -69,24 +69,25 @@ const Testimonials = () => {
               <div className="text-center">
                 <div className="relative inline-block w-32 h-32 mb-10 text-xs text-white rounded">
                   <div className="absolute w-24 h-24 border-t-4 border-r-4 border-orange-400 -top-4 -right-4"></div>
-                  <img
+                  <Image
                     className="object-cover w-full h-full"
-                    src="https://i.postimg.cc/KvrSzTxg/alexandru-zdrobau-dj-RG1v-B1pw-unsplash.jpg"
+                    src="/assets/images/anshu.jpeg"
                     alt=""
+                    width={400}
+                    height={400}
                   />
                   <div className="absolute w-24 h-24 border-b-4 border-l-4 border-orange-400 -bottom-4 -left-4"></div>
                 </div>
               </div>
               <p className="mb-4 text-base leading-7 text-gray-400">
-                Keep on jumping to get the most of the jump rope exercise. It will
-                help you to increase your bone density as well
+              I’ve used Orchid Company multiple times for cleaning and other services. The team is punctual, professional, and trustworthy. Their ‘Happiness Promise’ is real—they ensure customer satisfaction every step of the way. I couldn’t ask for more!
               </p>
               <h2 className="text-lg font-bold leading-9 text-black dark:text-white">
-                Watson Gems
+               Anshu Bhardawaj
               </h2>
-              <span className="block text-xs font-semibold text-orange-500 uppercase dark:text-orange-300">
+              {/* <span className="block text-xs font-semibold text-orange-500 uppercase dark:text-orange-300">
                 Administrator
-              </span>
+              </span> */}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"
@@ -110,24 +111,25 @@ const Testimonials = () => {
               <div className="text-center">
                 <div className="relative inline-block w-32 h-32 mb-10 text-xs text-white rounded">
                   <div className="absolute w-24 h-24 border-t-4 border-r-4 border-orange-400 -top-4 -right-4"></div>
-                  <img
+                  <Image
                     className="object-cover w-full h-full"
-                    src="https://i.postimg.cc/gk8KvyTN/ehsan-ahmadi-vs-Wy6nchc-Os-unsplash.jpg"
+                    src="/assets/images/rajat.jpg"
                     alt=""
+                    width={400}
+                    height={400}
                   />
                   <div className="absolute w-24 h-24 border-b-4 border-l-4 border-orange-400 -bottom-4 -left-4"></div>
                 </div>
               </div>
               <p className="mb-4 text-base leading-7 text-gray-400">
-                Keep on jumping to get the most of the jump rope exercise. It will
-                help you to increase your bone density as well
+              From start to finish, Orchid Company impressed me with their professionalism and attention to detail. Booking a service was simple, and the tasker they sent did an incredible job. It’s rare to find such a reliable platform. Highly recommended!
               </p>
               <h2 className="text-lg font-bold leading-9 text-black dark:text-white">
-                Stephan Kings
+                Rajat Tiwari
               </h2>
-              <span className="block text-xs font-semibold text-orange-500 uppercase dark:text-orange-300">
+              {/* <span className="block text-xs font-semibold text-orange-500 uppercase dark:text-orange-300">
                 Chief Director
-              </span>
+              </span> */}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="currentColor"

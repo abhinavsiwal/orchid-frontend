@@ -1,9 +1,9 @@
 import axios from "axios";
 
-// export const backendUrl = "http://localhost:9000/api";
-export const backendUrl = "https://api.orchidcompany.com/api";
+export const backendUrl = "http://localhost:9000/api";
+// export const backendUrl = "https://api.orchidcompany.com/api";
 // export const backendUrl = "";
-export const frontendUrl = "http://localhost:3000";
+export const frontendUrl = "https://orchidcompany.com";
 
 // export const strapiUrl = "http:///localhost:1337"
 export const strapiUrl = "https://strapi.orchidcompany.com";

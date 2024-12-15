@@ -4,6 +4,9 @@ const nextConfig = {
         domains: [
             "applore-dev-projects-1.s3.amazonaws.com",
             "applore-dev-projects-1.s3.ap-south-1.amazonaws.com",
+            "applore-dev-projects-3.s3.ap-south-1.amazonaws.com",
+            "orchid-assets-3.s3.ap-south-1.amazonaws.com",
+            "strapi.orchidcompany.com",
             "i.postimg.cc",
             "localhost",
             // Add more domains if needed
@@ -11,7 +14,7 @@ const nextConfig = {
     },
 
     env: {
-        backendUrl: "https://ill-pink-jay-gown.cyclic.app/api",
+        backendUrl: "https://api.orchidcompany.com/api",
         // backendUrl: "http://localhost:9000/api",
     },
     eslint: {

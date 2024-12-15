@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import React from 'react'
 
 const Team = () => {
@@ -19,23 +20,25 @@ const Team = () => {
           href="#"
         >
           <div className="inline-block w-full mb-3 overflow-hidden text-xs text-white md:rounded-full h-96 sm:w-64 sm:h-64">
-            <img
+            <Image
               className="object-cover w-full h-full transition-all hover:scale-110"
-              src="https://i.postimg.cc/RhQYkKYk/pexels-italo-melo-2379005.jpg"
+              src="/assets/images/anuj.jpeg"
               alt=""
+              width={400}
+              height={400}
             />
           </div>
           <div className="relative flex self-center flex-1 lg:ml-8 ">
             <div>
               <h2 className="mb-2 text-2xl font-bold dark:text-gray-300">
-                Harry Singh
+                Anuj Kumar
               </h2>
               <p className="mb-4 text-sm font-medium text-orange-500 dark:text-orange-400">
-                Director
+                Founder
               </p>
               <p className="mb-6 text-sm text-gray-500 dark:text-gray-400">
-                Lorem ipsum dolor sit amet, consectetu incididunt ut dolore magna
-                aliqua. Ut enim ad minim veniam
+              Anuj Kumar is the visionary founder of Orchid Company, a forward-thinking organization dedicated to delivering innovative solutions across indusstry. With a B.Tech in Computer Science, Anuj brings a blend of technical expertise and entrepreneurial passion to the forefront of the company.
+
               </p>
               <div className="flex">
                 <span className="inline-block mr-5 text-gray-700 dark:text-gray-400 hover:text-orange-500">
@@ -83,23 +86,25 @@ const Team = () => {
           href="#"
         >
           <div className="inline-block mb-3 overflow-hidden text-xs text-white bg-orange-500 md:rounded-full h-96 sm:w-64 sm:h-64">
-            <img
+            <Image
+            
               className="object-cover w-full h-full transition-all hover:scale-110"
-              src="https://i.postimg.cc/q7pv50zT/pexels-edmond-dant-s-4342352.jpg"
+              src="/assets/images/abhinav.jpg"
               alt=""
+              width={600}
+              height={600}
             />
           </div>
           <div className="relative flex self-center flex-1 lg:ml-8 ">
             <div>
               <h2 className="mb-2 text-2xl font-bold dark:text-gray-300">
-                Sriyana Robinson
+                Abhinav Siwal
               </h2>
               <p className="mb-4 text-sm font-medium text-orange-500 dark:text-orange-400">
-                Director
+                CTO - Chief Technology Officer
               </p>
               <p className="mb-6 text-sm text-gray-500 dark:text-gray-400">
-                Lorem ipsum dolor sit amet, consectetu incididunt ut dolore magna
-                aliqua. Ut enim ad minim veniam
+              Abhinav Siwal is a visionary leader driving the technological innovation at Orchid Company. With over 3 years of experience as a MERN stack developer and expertise in Next.js, Tailwind CSS, and AWS, Anuj ensures the seamless execution of cutting-edge solutions, delivering robust and scalable products across industries.
               </p>
               <div className="flex">
                 <span className="inline-block mr-5 text-gray-700 dark:text-gray-400 hover:text-orange-500">
@@ -147,23 +152,24 @@ const Team = () => {
           href="#"
         >
           <div className="inline-block mb-3 overflow-hidden text-xs text-white bg-orange-500 md:rounded-full h-96 sm:w-64 sm:h-64">
-            <img
+            <Image
               className="object-cover w-full h-full transition-all hover:scale-110"
-              src="https://i.postimg.cc/05hmHMx1/pexels-emmy-e-2381069.jpg"
+              src="/assets/images/dhanush.jpeg"
               alt=""
+              width={400}
+              height={400}
             />
           </div>
           <div className="relative flex self-center flex-1 lg:ml-8 ">
             <div>
               <h2 className="mb-2 text-2xl font-bold dark:text-gray-300">
-                Riya Shakespeare
+               Dhanush
               </h2>
               <p className="mb-4 text-sm font-medium text-orange-500 dark:text-orange-400">
-                Director
+                CMO - Chief Marketing Officer
               </p>
               <p className="mb-6 text-sm text-gray-500 dark:text-gray-400">
-                Lorem ipsum dolor sit amet, consectetu incididunt ut dolore magna
-                aliqua. Ut enim ad minim veniam
+              Well am an Automobile Engineer who is crazy about cars and bikes and way more crazy about civil service exams. And that craziness has kept me still in the loop after giving 4 mains and 2 interviews. Because civil service preparations is more worth than everything you miss in the process.
               </p>
               <div className="flex">
                 <span className="inline-block mr-5 text-gray-700 dark:text-gray-400 hover:text-orange-500">
@@ -211,24 +217,25 @@ const Team = () => {
           href="#"
         >
           <div className="inline-block mb-3 overflow-hidden text-xs text-white bg-orange-500 md:rounded-full h-96 sm:w-64 sm:h-64">
-            <img
+            <Image
               className="object-cover w-full h-full transition-all hover:scale-110"
-              src="https://i.postimg.cc/bNyr5cJq/pexels-anastasia-shuraeva-5704720.jpg"
+              src="/assets/images/ashu.png"
               alt=""
+              width={400}
+              height={400}
             />
           </div>
           <div className="relative flex self-center flex-1 lg:ml-8 ">
             <div>
               <h2 className="mb-2 text-2xl font-bold dark:text-gray-300">
                 {" "}
-                Saleen Doe
+                Ashu Chaudhary
               </h2>
               <p className="mb-4 text-sm font-medium text-orange-500 dark:text-orange-400">
-                Director
+              Financial Advisor
               </p>
               <p className="mb-6 text-sm text-gray-500 dark:text-gray-400">
-                Lorem ipsum dolor sit amet, consectetu incididunt ut dolore magna
-                aliqua. Ut enim ad minim veniam
+              Ashu Chaudhary brings a wealth of financial expertise to Orchid Company, specializing in strategic planning, risk management, and growth optimization. With a proven track record of guiding businesses toward financial stability and success, Ashu plays a pivotal role in driving sustainable growth and maximizing profitability.
               </p>
               <div className="flex">
                 <span className="inline-block mr-5 text-gray-700 dark:text-gray-400 hover:text-orange-500">
