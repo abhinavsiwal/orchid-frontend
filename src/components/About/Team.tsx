@@ -89,7 +89,7 @@ const Team = () => {
             <Image
             
               className="object-cover w-full h-full transition-all hover:scale-110"
-              src="/assets/images/abhinav.jpg"
+              src="/assets/images/abhinav.JPG"
               alt=""
               width={600}
               height={600}
